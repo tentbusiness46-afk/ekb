@@ -1,0 +1,19 @@
+{
+  "name": "ekarolbagh-android",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Android shell for the eKarolBagh app: opens https://ekarolbagh.in/app",
+  "scripts": {
+    "setup": "npx cap add android && npx cap sync android",
+    "sync": "npx cap sync android",
+    "open": "npx cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/app": "^6.0.1",
+    "@capacitor/core": "^6.1.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.2"
+  }
+}

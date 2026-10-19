@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>eKarolBagh Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1456d9;--blue2:#0b3fa8;--tint:#eaf1ff;--bg:#f3f7ff;--card:#fff;--text:#0f1b33;--mute:#60708f;--line:#dbe5fa;--red:#e11d2e;--green:#15803d;--amber:#b45309}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:13.5px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3{font-family:Poppins,Inter,sans-serif;font-weight:600}
+.ic{width:1em;height:1em;display:inline-block;object-fit:contain;vertical-align:-.15em;pointer-events:none}
+.wh{filter:brightness(0) invert(1)}
+/* shell */
+.shell{display:grid;grid-template-columns:232px 1fr;min-height:100vh}
+.sb{background:#0b1a3d;color:#c5d3f0;padding:16px 12px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column}
+.sb .lg{background:#fff;border-radius:10px;padding:6px 10px;margin:0 4px 6px}.sb .lg img{height:32px;display:block}
+.sb .tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8ea3cf;margin:6px 8px 14px}
+.sb a{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;font-weight:500;margin-bottom:2px}
+.sb a .ic{width:19px;height:19px;filter:brightness(0) invert(1);opacity:.75}
+.sb a:hover{background:rgba(255,255,255,.07);color:#fff}.sb a.on{background:var(--blue);color:#fff}.sb a.on .ic{opacity:1}
+.sb .cnt{margin-left:auto;background:#f59e0b;color:#1f1300;font-size:11px;font-weight:700;border-radius:10px;padding:1px 7px}
+.sb .bot{margin-top:auto;border-top:1px solid rgba(255,255,255,.1);padding-top:12px}
+.sb .me{padding:4px 12px 10px;font-size:12px}.sb .me b{display:block;color:#fff;font-size:13px}
+main{padding:22px 28px 60px;min-width:0}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.top h1{font-size:22px;margin-right:auto}
+.crumb{font-size:12.5px;color:var(--mute);margin-bottom:6px}.crumb a{color:var(--blue);font-weight:600}
+/* pieces */
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.card h3{font-size:15px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid3{display:grid;grid-template-columns:2fr 1fr;gap:16px;align-items:start}
+.stack>*+*{margin-top:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:38px;padding:0 15px;border-radius:9px;border:0;background:var(--blue);color:#fff;font-weight:600;cursor:pointer;white-space:nowrap}
+.btn:hover{background:var(--blue2)}.btn.o{background:#fff;color:var(--blue);border:1.5px solid var(--line)}.btn.o:hover{border-color:var(--blue)}
+.btn.r{background:#fff;color:var(--red);border:1.5px solid #f6c5ca}.btn.r:hover{background:#fff5f6}
+.btn.s{height:32px;padding:0 11px;font-size:12.5px}.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn .ic{width:16px;height:16px}
+input.in,select.in,textarea.in{height:38px;border:1.5px solid var(--line);border-radius:9px;padding:0 11px;background:#fff;outline:none;min-width:0}
+textarea.in{height:auto;padding:9px 11px;resize:vertical;line-height:1.5}
+input.in:focus,select.in:focus,textarea.in:focus{border-color:var(--blue)}
+.fl{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:600;color:var(--mute)}
+.fl .in{color:var(--text);font-weight:500;font-size:13.5px}
+.form{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.form .full{grid-column:1/-1}.form.c3{grid-template-columns:repeat(3,1fr)}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.tools .in{height:36px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:12px}
+.tabs a{padding:7px 12px;border-radius:20px;font-weight:600;font-size:12.5px;background:#fff;border:1px solid var(--line);cursor:pointer}
+.tabs a.on{background:var(--blue);color:#fff;border-color:var(--blue)}.tabs a small{opacity:.7;margin-left:4px}
+.tw{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:auto}
+table.t{width:100%;border-collapse:collapse;font-size:13px}
+table.t th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute);font-weight:600;padding:11px 12px;border-bottom:1px solid var(--line);background:#fafcff;white-space:nowrap;position:sticky;top:0}
+table.t td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.t tr:last-child td{border-bottom:0}
+table.t tr.cl{cursor:pointer}table.t tr.cl:hover td{background:#f8fbff}
+table.t .num{text-align:right;white-space:nowrap}
+.thumb{width:42px;height:42px;border-radius:8px;border:1px solid var(--line);background:#fff;object-fit:contain;display:block}
+.thumb.e{display:flex;align-items:center;justify-content:center}.thumb.e .ic{width:24px;height:24px;opacity:.6}
+.chip{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:12px;background:var(--tint);color:var(--blue);white-space:nowrap}
+.chip.New{background:#fff4e5;color:var(--amber)}.chip.Confirmed{background:var(--tint);color:var(--blue)}.chip.Packed{background:#ede9fe;color:#6d28d9}.chip.Shipped{background:#e0f2fe;color:#0369a1}.chip.Delivered{background:#dcfce7;color:var(--green)}.chip.Cancelled{background:#fee2e2;color:var(--red)}
+.chip.g{background:var(--tint);color:var(--blue)}.chip.n{background:#f1f5f9;color:#475569}.chip.u{background:#f8fafc;color:var(--mute)}
+.chip.off{background:#fee2e2;color:var(--red)}.chip.on{background:#dcfce7;color:var(--green)}
+.mute{color:var(--mute)}.sm{font-size:12px}.b{font-weight:600}
+.pager{display:flex;gap:8px;align-items:center;justify-content:flex-end;margin-top:12px}
+.sw{position:relative;width:38px;height:22px;border-radius:11px;background:#cbd5e1;cursor:pointer;flex:none;border:0;transition:background .15s}
+.sw::after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .15s}
+.sw.on{background:var(--blue)}.sw.on::after{left:19px}
+.cell{width:84px;height:32px;border:1.5px solid transparent;border-radius:7px;padding:0 7px;background:#f6f9ff;text-align:right}
+.cell:focus{border-color:var(--blue);background:#fff;outline:none}.cell.dirty{border-color:#f59e0b;background:#fffbeb}
+.savebar{position:sticky;bottom:14px;margin-top:14px;background:#0b1a3d;color:#fff;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.savebar .btn.o{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}
+.kv{display:flex;justify-content:space-between;padding:6px 0;gap:12px}.kv.t{border-top:1px dashed var(--line);margin-top:6px;padding-top:10px;font-weight:700;font-size:15px}
+.tl{border-left:2px solid var(--line);margin-left:6px;padding-left:16px}.tl div{position:relative;padding-bottom:14px}.tl div::before{content:"";position:absolute;left:-22px;top:3px;width:10px;height:10px;border-radius:50%;background:var(--blue)}
+.tl small{display:block;color:var(--mute)}
+/* stats + chart */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+.tile small{color:var(--mute);font-weight:600;font-size:12px}.tile b{display:block;font-family:Poppins,Inter,sans-serif;font-size:26px;font-weight:600;margin:4px 0 2px}.tile span{font-size:12px;color:var(--mute)}
+.tile a.chip{margin:6px 4px 0 0}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:220px}
+.chart .tip{position:absolute;pointer-events:none;background:#0b1a3d;color:#fff;font-size:12px;padding:7px 10px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-100%);opacity:0;transition:opacity .1s}
+.chart .tip.on{opacity:1}
+/* rich editor */
+.ed{border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.ed .tb{display:flex;gap:2px;padding:6px;border-bottom:1px solid var(--line);flex-wrap:wrap;background:#fafcff;border-radius:10px 10px 0 0}
+.ed .tb button{height:30px;min-width:30px;padding:0 8px;border:0;background:none;border-radius:6px;cursor:pointer;font-weight:700;font-size:13px}
+.ed .tb button:hover,.ed .tb button.on{background:var(--tint);color:var(--blue)}
+.ed .area{min-height:140px;padding:12px 14px;outline:none;line-height:1.6;overflow-wrap:anywhere}
+.ed .area ul,.ed .area ol{padding-left:22px}.ed .area p{margin:0 0 8px}.ed .area h2,.ed .area h3{font-size:15px;margin:10px 0 6px}
+.ed textarea{width:100%;min-height:160px;border:0;padding:12px 14px;font-family:ui-monospace,Consolas,monospace;font-size:12.5px;outline:none;resize:vertical;border-radius:0 0 10px 10px}
+/* photos */
+.ph{display:flex;gap:10px;flex-wrap:wrap}
+.ph .p{width:120px;border:1px solid var(--line);border-radius:10px;padding:6px;background:#fff;text-align:center}
+.ph .p img{width:106px;height:106px;object-fit:contain;display:block}
+.ph .p div{display:flex;justify-content:center;gap:4px;margin-top:6px}
+.ph .p button{width:28px;height:26px;border:1px solid var(--line);background:#fff;border-radius:6px;cursor:pointer}
+.ph .p:first-child{border-color:var(--blue)}
+.ph label.add{width:120px;height:148px;border:2px dashed var(--line);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;color:var(--blue);font-weight:600;font-size:12.5px;text-align:center;padding:8px}
+.ph label.add:hover{border-color:var(--blue);background:var(--tint)}
+.radio{display:flex;gap:8px;flex-wrap:wrap}.radio label{display:flex;align-items:center;gap:7px;border:1.5px solid var(--line);border-radius:9px;padding:8px 12px;cursor:pointer;font-weight:600;color:var(--text);font-size:13px}
+.radio label.on{border-color:var(--blue);background:var(--tint);color:var(--blue)}.radio input{display:none}
+.tg{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--text);font-size:13px}
+/* modal + toast */
+.ov{position:fixed;inset:0;background:rgba(11,26,61,.45);display:flex;align-items:flex-start;justify-content:center;padding:60px 16px;z-index:40;overflow:auto}
+.md{background:#fff;border-radius:16px;padding:22px;width:100%;max-width:560px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.md.w{max-width:860px}.md h2{font-size:18px;margin-bottom:14px}.md .act{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+.err{color:var(--red);font-size:12.5px;min-height:16px;margin-top:8px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:#0b1a3d;color:#fff;padding:11px 16px;border-radius:10px;opacity:0;transition:all .2s;z-index:60;font-weight:500}
+.toast.on{opacity:1;transform:translate(-50%,0)}.toast.bad{background:var(--red)}
+.login{max-width:400px;margin:10vh auto;padding:0 16px}.login .lg{text-align:center;margin-bottom:18px}.login .lg img{height:48px}
+.empty{text-align:center;color:var(--mute);padding:40px 16px}
+.mbar{display:none}
+@media (max-width:980px){.tiles{grid-template-columns:1fr 1fr}.grid2,.grid3{grid-template-columns:1fr}}
+@media (max-width:760px){
+ .shell{grid-template-columns:1fr}.sb{display:none}.sb.open{display:flex;position:fixed;inset:0;z-index:50;height:auto;width:250px}
+ .mbar{display:flex;align-items:center;gap:10px;background:#0b1a3d;padding:10px 14px;position:sticky;top:0;z-index:30}.mbar img{height:30px;background:#fff;border-radius:6px;padding:3px 6px}
+ .mbar button{background:none;border:0;color:#fff;font-size:22px;cursor:pointer}
+ main{padding:16px 12px 60px}.form,.form.c3{grid-template-columns:1fr}.top h1{font-size:19px}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<div class="toast" id="toast"></div>
+<script src="ekb-assets.js"></script>
+<script>
+const ICON = window.EKB_ICON || {}, LOGO = window.EKB_LOGO || "";
+const I = (n, c) => `<img class="ic${c ? " " + c : ""}" src="${ICON[n] || ""}" alt="">`;
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const inr = (n) => n == null || n === "" ? "—" : "₹" + Math.round(n).toLocaleString("en-IN");
+const dt = (t, time = true) => t ? new Date(t).toLocaleString("en-IN", { day: "numeric", month: "short", year: "numeric", ...(time ? { hour: "numeric", minute: "2-digit" } : {}) }) : "—";
+const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+const STATUSES = ["New", "Confirmed", "Packed", "Shipped", "Delivered", "Cancelled"];
+const NEXT = { New: "Confirmed", Confirmed: "Packed", Packed: "Shipped", Shipped: "Delivered" };
+const WL = { g: "Guarantee", n: "Non-Guarantee", u: "Other" };
+const ICONS = ["airpods", "battery", "cables", "charger", "headphones", "neckband", "powerbank", "speaker", "wired", "watch", "others", "orders", "tag", "guarantee", "cart"];
+let ME = null, CATS = [], VIEW = {}, dirty = {};
+
+/* ---------- api ---------- */
+async function api(method, path, body, form) {
+  const r = await fetch("/api" + path, { method, credentials: "same-origin", headers: { "x-ekb": "1", ...(body && !form ? { "content-type": "application/json" } : {}) }, body: form ? body : body ? JSON.stringify(body) : undefined });
+  const d = (r.headers.get("content-type") || "").includes("json") ? await r.json() : null;
+  if (r.status === 401 && path !== "/auth/login") { ME = null; render(); throw new Error("Please sign in again"); }
+  if (!r.ok) throw new Error(d?.error || "Something went wrong");
+  return d;
+}
+const GET = (p) => api("GET", p), POST = (p, b, f) => api("POST", p, b, f), PUT = (p, b) => api("PUT", p, b), PATCH = (p, b) => api("PATCH", p, b), DEL = (p, b) => api("DELETE", p, b);
+function toast(m, bad) { const t = document.getElementById("toast"); t.textContent = m; t.className = "toast on" + (bad ? " bad" : ""); clearTimeout(toast.t); toast.t = setTimeout(() => t.className = "toast", 2600); }
+const fail = (e) => toast(e.message || String(e), true);
+const can = (p) => ME && (ME.role === "admin" || ME.perms.includes(p));
+const qs = (o) => { const s = new URLSearchParams(Object.entries(o).filter(([, v]) => v !== "" && v != null)).toString(); return s ? "?" + s : ""; };
+const $ = (id) => document.getElementById(id);
+const val = (id) => ($(id)?.value ?? "").trim();
+function modal(html, wide) { const o = document.createElement("div"); o.className = "ov"; o.innerHTML = `<div class="md${wide ? " w" : ""}">${html}</div>`; o.addEventListener("mousedown", (e) => { if (e.target === o) o.remove(); }); document.body.appendChild(o); return o; }
+const closeModal = () => document.querySelector(".ov")?.remove();
+
+/* ---------- rich text editor (bold, lists, headings; HTML view) ---------- */
+function editor(id, html) {
+  return `<div class="ed" id="${id}"><div class="tb">
+    <button type="button" title="Bold" onclick="ex('bold')"><b>B</b></button><button type="button" title="Italic" onclick="ex('italic')"><i>I</i></button>
+    <button type="button" title="Heading" onclick="ex('formatBlock','h3')">H</button><button type="button" title="Paragraph" onclick="ex('formatBlock','p')">¶</button>
+    <button type="button" title="Bullet list" onclick="ex('insertUnorderedList')">• List</button><button type="button" title="Numbered list" onclick="ex('insertOrderedList')">1. List</button>
+    <button type="button" title="Clear formatting" onclick="ex('removeFormat')">Clear</button><button type="button" title="Edit HTML" style="margin-left:auto" onclick="edHtml('${id}')">HTML</button>
+  </div><div class="area" contenteditable="true">${html || ""}</div></div>`;
+}
+function ex(cmd, v) { document.execCommand(cmd, false, v); }
+function edHtml(id) {
+  const e = $(id), a = e.querySelector(".area"), t = e.querySelector("textarea"), b = e.querySelector(".tb button:last-child");
+  if (t) { a.innerHTML = t.value; t.remove(); a.style.display = ""; b.classList.remove("on"); }
+  else { const x = document.createElement("textarea"); x.value = a.innerHTML; a.style.display = "none"; e.appendChild(x); b.classList.add("on"); }
+}
+const edVal = (id) => { const e = $(id), t = e.querySelector("textarea"); return (t ? t.value : e.querySelector(".area").innerHTML).replace(/^(<br>|\s)+$/, ""); };
+
+/* ---------- shell ---------- */
+const NAV = [["dashboard", "Dashboard", "cats", "dashboard"], ["orders", "Orders", "orders", "orders"], ["products", "Products", "tag", "products"], ["categories", "Categories & brands", "cats", "products"], ["customers", "Customers", "account", "customers"], ["staff", "Staff", "lock", "admin"], ["settings", "Settings & policies", "settings", "settings"]];
+function shell(cur, body) {
+  const items = NAV.filter((n) => n[3] === "admin" ? ME.role === "admin" : can(n[3]));
+  return `<div class="mbar"><button onclick="$('sb').classList.add('open')">☰</button><img src="${LOGO}" alt=""><b style="color:#fff">Admin</b></div>
+  <div class="shell"><nav class="sb" id="sb"><div class="lg"><img src="${LOGO}" alt="eKarolBagh"></div><div class="tag">Admin panel</div>
+    ${items.map((n) => `<a href="#/${n[0]}" class="${cur === n[0] ? "on" : ""}" onclick="$('sb').classList.remove('open')">${I(n[2])}${n[1]}${n[0] === "orders" && VIEW.newCount ? `<span class="cnt">${VIEW.newCount}</span>` : ""}</a>`).join("")}
+    <div class="bot"><div class="me"><b>${esc(ME.name)}</b>${esc(ME.email)} · ${ME.role === "admin" ? "Admin" : "Staff"}</div>
+    <a href="/" target="_blank">${I("home")}View website</a><a href="/app/" target="_blank">${I("cart")}View app</a><a onclick="logout()" style="cursor:pointer">${I("logout")}Log out</a></div></nav>
+  <main id="main">${body}</main></div>`;
+}
+async function logout() { await POST("/auth/logout").catch(() => {}); ME = null; location.hash = "#/"; render(); }
+async function refreshNewCount() { if (!can("orders")) return; try { const d = await GET("/admin/orders?status=New&per=1"); VIEW.newCount = d.total; } catch {} }
+
+/* ---------- login ---------- */
+function loginView() {
+  return `<div class="login"><div class="lg"><img src="${LOGO}" alt="eKarolBagh"></div><div class="card"><h2 style="font-size:19px;margin-bottom:4px">Admin sign in</h2><p class="mute" style="margin-bottom:16px">For the owner and staff of eKarolBagh</p>
+  <form onsubmit="event.preventDefault();doLogin()" class="stack"><label class="fl">Email<input class="in" id="le" type="email" autocomplete="username" required></label><label class="fl">Password<input class="in" id="lp" type="password" autocomplete="current-password" required></label>
+  <button class="btn" style="width:100%">Sign in</button></form><div class="err" id="lerr"></div></div></div>`;
+}
+async function doLogin() {
+  try { const d = await POST("/auth/login", { email: val("le"), password: $("lp").value });
+    if (d.user.role === "customer") { await POST("/auth/logout"); throw new Error("This account doesn't have admin access"); }
+    ME = d.user; location.hash = "#/" + (can("dashboard") ? "dashboard" : can("orders") ? "orders" : NAV.find((n) => can(n[3]))?.[0] || "orders"); render();
+  } catch (e) { $("lerr").textContent = e.message; }
+}
+
+/* =================== dashboard =================== */
+async function dashboardView() {
+  const d = await GET("/admin/dashboard"), pend = STATUSES.slice(0, 4).reduce((t, s) => t + (d.pending[s] || 0), 0);
+  return `<div class="top"><h1>Dashboard</h1><span class="mute">${new Date().toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long" })}</span></div>
+  <div class="tiles">
+    <div class="tile"><small>Today</small><b>${inr(d.today.revenue)}</b><span>${plural(d.today.orders, "order")}</span></div>
+    <div class="tile"><small>This month</small><b>${inr(d.month.revenue)}</b><span>${plural(d.month.orders, "order")}</span></div>
+    <div class="tile"><small>Orders to handle</small><b>${pend}</b>${STATUSES.slice(0, 4).map((s) => d.pending[s] ? `<a class="chip ${s}" href="#/orders?status=${s}">${s} ${d.pending[s]}</a>` : "").join("") || '<span>All caught up</span>'}</div>
+    <div class="tile"><small>Catalogue</small><b>${d.counts.products}</b><span>products · <a class="b" style="color:var(--red)" href="#/products?stock=out">${d.counts.oos} out of stock</a> · ${plural(d.counts.customers, "customer")} (${d.counts.newCustomers} new in 30 days)</span></div>
+  </div>
+  <div class="grid3"><div class="card"><h3>Revenue · last 30 days</h3>${barChart(d.series)}</div>
+    <div class="card"><h3>Best sellers · 30 days</h3>${d.bestSellers.length ? `<table class="t">${d.bestSellers.map((b) => `<tr class="cl" onclick="location.hash='#/products/${b.id}'"><td style="padding-left:0">${b.image ? `<img class="thumb" src="${esc(b.image)}" alt="">` : ""}</td><td><div class="b" style="max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(b.name)}</div><span class="mute sm">${b.qty} sold</span></td><td class="num">${inr(b.rev)}</td></tr>`).join("")}</table>` : '<div class="empty">No sales yet</div>'}</div></div>
+  <div class="card" style="margin-top:16px"><h3>Latest orders <a class="btn o s" style="margin-left:auto" href="#/orders">All orders</a></h3>${d.recent.length ? orderTable(d.recent.map((o) => ({ ...o, lines: o.items.length }))) : '<div class="empty">No orders yet. They will appear here as soon as customers order on the website or app.</div>'}</div>`;
+}
+function barChart(series) {
+  const W = 640, H = 220, L = 46, B = 26, T = 10, max = Math.max(1000, ...series.map((s) => s.revenue)), step = niceStep(max), top = Math.ceil(max / step) * step;
+  const bw = (W - L - 8) / series.length, barW = Math.min(16, bw - 4), y = (v) => T + (H - T - B) * (1 - v / top);
+  let g = "";
+  for (let v = 0; v <= top; v += step) g += `<line x1="${L}" x2="${W}" y1="${y(v)}" y2="${y(v)}" stroke="#e8eef9" stroke-width="1"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="#60708f">${v >= 1000 ? (v / 1000).toFixed(v % 1000 ? 1 : 0) + "K" : v}</text>`;
+  const bars = series.map((s, i) => { const x = L + i * bw + (bw - barW) / 2, h = Math.max(0, y(0) - y(s.revenue)), r = Math.min(4, h);
+    const path = h > 0 ? `M${x},${y(0)} V${y(0) - h + r} Q${x},${y(0) - h} ${x + r},${y(0) - h} H${x + barW - r} Q${x + barW},${y(0) - h} ${x + barW},${y(0) - h + r} V${y(0)} Z` : "";
+    const lab = i % 5 === 4 || i === series.length - 1 ? `<text x="${x + barW / 2}" y="${H - 8}" text-anchor="middle" font-size="11" fill="#60708f">${new Date(s.date).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}</text>` : "";
+    return `${path ? `<path d="${path}" fill="#1456d9"/>` : ""}<rect x="${L + i * bw}" y="${T}" width="${bw}" height="${H - T - B}" fill="transparent" data-i="${i}"/>${lab}`; }).join("");
+  VIEW.series = series;
+  return `<div class="chart" onmousemove="chartTip(event,this)" onmouseleave="this.querySelector('.tip').classList.remove('on')"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Revenue per day for the last 30 days">${g}<line x1="${L}" x2="${W}" y1="${y(0)}" y2="${y(0)}" stroke="#c9d6ee"/>${bars}</svg><div class="tip"></div></div>
+  <details style="margin-top:8px"><summary class="mute sm" style="cursor:pointer">Show as table</summary><table class="t" style="margin-top:6px">${series.slice().reverse().map((s) => `<tr><td>${new Date(s.date).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}</td><td class="num">${plural(s.orders, "order")}</td><td class="num">${inr(s.revenue)}</td></tr>`).join("")}</table></details>`;
+}
+function niceStep(max) { const raw = max / 4, p = Math.pow(10, Math.floor(Math.log10(raw))), n = raw / p; return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10) * p; }
+function chartTip(e, el) {
+  const r = e.target.closest("rect[data-i]"), tip = el.querySelector(".tip"); if (!r) return tip.classList.remove("on");
+  const s = VIEW.series[r.dataset.i], box = el.getBoundingClientRect(), rb = r.getBoundingClientRect();
+  tip.innerHTML = `<b>${new Date(s.date).toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short" })}</b><br>${inr(s.revenue)} · ${plural(s.orders, "order")}`;
+  tip.style.left = rb.left - box.left + rb.width / 2 + "px"; tip.style.top = "6px"; tip.classList.add("on");
+}
+
+/* =================== orders =================== */
+function orderTable(orders) {
+  return `<div class="tw" style="border:0"><table class="t"><tr><th>Order</th><th>Date</th><th>Customer</th><th>City</th><th class="num">Items</th><th class="num">Total</th><th>From</th><th>Status</th></tr>
+  ${orders.map((o) => `<tr class="cl" onclick="location.hash='#/orders/${o.number}'"><td class="b">${esc(o.number)}</td><td class="mute">${dt(o.createdAt)}</td><td><div class="b">${esc(o.customer.name)}</div><span class="mute sm">${esc(o.customer.phone)}</span></td><td>${esc(o.city || o.address?.city || "")}</td><td class="num">${o.lines}</td><td class="num b">${inr(o.total)}</td><td><span class="mute">${o.source === "app" ? "App" : "Website"}</span></td><td><span class="chip ${o.status}">${o.status}</span></td></tr>`).join("")}</table></div>`;
+}
+async function ordersView(q) {
+  const f = { status: q.status || "", q: q.q || "", from: q.from || "", to: q.to || "", page: q.page || 1 };
+  const d = await GET("/admin/orders" + qs({ ...f, per: 50 })), all = Object.values(d.counts).reduce((a, b) => a + b, 0);
+  const link = (o) => "#/orders" + qs({ ...f, page: "", ...o });
+  return `<div class="top"><h1>Orders</h1><a class="btn o" href="/api/admin/orders-export.xlsx${qs({ status: f.status, q: f.q, from: f.from, to: f.to })}">${I("orders")}Export to Excel</a></div>
+  <div class="tabs"><a href="${link({ status: "" })}" class="${!f.status ? "on" : ""}">All<small>${all}</small></a>${STATUSES.map((s) => `<a href="${link({ status: s })}" class="${f.status === s ? "on" : ""}">${s}<small>${d.counts[s] || 0}</small></a>`).join("")}</div>
+  <form class="tools" onsubmit="event.preventDefault();location.hash='#/orders'+qs({status:'${f.status}',q:val('oq'),from:val('of'),to:val('ot')})">
+    <input class="in" id="oq" placeholder="Order no., name, phone or email" value="${esc(f.q)}" style="width:280px"><label class="mute sm">From <input class="in" type="date" id="of" value="${esc(f.from)}"></label><label class="mute sm">To <input class="in" type="date" id="ot" value="${esc(f.to)}"></label><button class="btn s">Search</button>${f.q || f.from || f.to ? `<a class="btn o s" href="${link({ q: "", from: "", to: "" })}">Clear</a>` : ""}</form>
+  <div class="tw">${d.orders.length ? orderTable(d.orders) : '<div class="empty">No orders match</div>'}</div>${pager(d, (p) => link({ page: p }))}`;
+}
+function pager(d, link) { const pages = Math.ceil(d.total / d.per); if (pages <= 1) return ""; return `<div class="pager"><span class="mute">${d.total} total · page ${d.page} of ${pages}</span>${d.page > 1 ? `<a class="btn o s" href="${link(d.page - 1)}">← Previous</a>` : ""}${d.page < pages ? `<a class="btn o s" href="${link(d.page + 1)}">Next →</a>` : ""}</div>`; }
+async function orderView(num) {
+  const o = await GET("/admin/orders/" + encodeURIComponent(num)), a = o.address, nx = NEXT[o.status], ph = (o.customer.phone || a.phone || "").replace(/\D/g, "").slice(-10);
+  VIEW.order = o;
+  const addrText = `${a.name}, ${a.phone}\n${a.line}${a.landmark ? ", " + a.landmark : ""}\n${a.city}, ${a.state} - ${a.pin}`;
+  return `<div class="crumb"><a href="#/orders">Orders</a> › ${esc(o.number)}</div>
+  <div class="top"><h1>Order ${esc(o.number)} <span class="chip ${o.status}" style="font-size:13px;vertical-align:4px">${o.status}</span></h1>
+   ${nx ? `<button class="btn" onclick="setOrderStatus('${nx}')">Mark as ${nx}</button>` : ""}
+   ${!["Delivered", "Cancelled"].includes(o.status) ? `<select class="in" style="height:38px" onchange="if(this.value)setOrderStatus(this.value);this.value=''"><option value="">Change status…</option>${STATUSES.filter((s) => s !== o.status).map((s) => `<option>${s}</option>`).join("")}</select>` : ""}</div>
+  <p class="mute" style="margin:-10px 0 16px">Placed ${dt(o.createdAt)} on the ${o.source === "app" ? "app" : "website"} · ${o.payment === "COD" ? "Cash on Delivery" : esc(o.payment)}</p>
+  <div class="grid3"><div class="stack">
+    <div class="card"><h3>Items</h3><table class="t">${o.items.map((i) => `<tr><td style="padding-left:0;width:52px">${i.image ? `<img class="thumb" src="${esc(i.image)}" alt="">` : `<span class="thumb e">${I("tag")}</span>`}</td><td><a class="b" href="#/products/${i.productId}">${esc(i.name)}</a>${i.label ? `<div class="mute sm">${esc(i.label)}</div>` : ""}${i.sku ? `<div class="mute sm">SKU ${esc(i.sku)}</div>` : ""}</td><td class="num mute">${inr(i.price)} × ${i.qty}</td><td class="num b">${inr(i.price * i.qty)}</td></tr>`).join("")}</table>
+      <div style="margin-top:10px"><div class="kv"><span class="mute">Items</span><span>${inr(o.itemsTotal)}</span></div><div class="kv"><span class="mute">Delivery</span><span>${o.delivery ? inr(o.delivery) : "Free"}</span></div><div class="kv t"><span>To collect (COD)</span><span>${inr(o.total)}</span></div></div></div>
+    <div class="card"><h3>Internal note <span class="mute sm" style="font-weight:500">only staff see this</span></h3><textarea class="in" id="onote" rows="3" style="width:100%" placeholder="e.g. Customer asked for delivery after 5 PM">${esc(o.note)}</textarea><button class="btn o s" style="margin-top:8px" onclick="PATCH('/admin/orders/${o.number}',{note:val('onote')}).then(()=>toast('Note saved')).catch(fail)">Save note</button></div>
+  </div><div class="stack">
+    <div class="card"><h3>${I("account")} Customer</h3><div class="b">${esc(o.customer.name)}</div><div class="mute">${esc(o.customer.email || "")}</div><div style="margin-top:4px">${esc(o.customer.phone)}</div>
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><a class="btn s" href="tel:+91${ph}">${I("phone", "wh")}Call</a><a class="btn o s" target="_blank" href="https://wa.me/91${ph}?text=${encodeURIComponent(`Hello ${o.customer.name}, this is eKarolBagh about your order ${o.number}.`)}">WhatsApp</a>${o.customer.id && can("customers") ? `<a class="btn o s" href="#/customers/${o.customer.id}">Profile</a>` : ""}</div></div>
+    <div class="card"><h3>${I("pin")} Deliver to</h3><div style="white-space:pre-line;line-height:1.6">${esc(addrText)}</div><button class="btn o s" style="margin-top:10px" onclick="navigator.clipboard.writeText(${esc(JSON.stringify(addrText))}).then(()=>toast('Address copied'))">Copy address</button></div>
+    <div class="card"><h3>History</h3><div class="tl">${o.events.slice().reverse().map((e) => `<div><b>${e.status}</b>${e.note ? ` · ${esc(e.note)}` : ""}<small>${dt(e.at)}${e.by ? " · " + esc(e.by) : ""}</small></div>`).join("")}</div></div>
+  </div></div>`;
+}
+async function setOrderStatus(s) {
+  const note = s === "Cancelled" ? prompt("Reason for cancelling (optional):") : "";
+  if (note === null) return;
+  if (s === "Cancelled" && !confirm(`Cancel order ${VIEW.order.number}? Counted stock goes back and the customer is emailed.`)) return;
+  try { await PATCH("/admin/orders/" + VIEW.order.number, { status: s, statusNote: note || "" }); toast(`Marked as ${s}`); await refreshNewCount(); render(); } catch (e) { fail(e); }
+}
+
+/* =================== products =================== */
+async function loadCats() { CATS = (await GET("/admin/categories")).categories; }
+async function productsView(q) {
+  await loadCats();
+  const f = { q: q.q || "", cat: q.cat || "", warranty: q.warranty || "", stock: q.stock || "", active: q.active || "", deal: q.deal || "", page: q.page || 1 };
+  const d = await GET("/admin/products" + qs({ ...f, per: 50 }));
+  dirty = {}; VIEW.products = Object.fromEntries(d.products.map((p) => [p.id, p]));
+  const link = (o) => "#/products" + qs({ ...f, page: "", ...o });
+  const sel = (id, opts, cur) => `<select class="in" id="${id}" onchange="filterProducts()">${opts.map(([v, l]) => `<option value="${v}"${String(cur) === String(v) ? " selected" : ""}>${l}</option>`).join("")}</select>`;
+  return `<div class="top"><h1>Products</h1><a class="btn o" href="/api/admin/products-export.xlsx">Export to Excel</a><button class="btn o" onclick="importModal()">Import from Excel</button><a class="btn" href="#/products/new">+ Add product</a></div>
+  <div class="tools"><input class="in" id="pq" placeholder="Search name, SKU, brand or ID" value="${esc(f.q)}" onkeydown="if(event.key==='Enter')filterProducts()" style="width:240px">
+   ${sel("pc", [["", "All categories"], ...CATS.map((c) => [c.id, c.name])], f.cat)}${sel("pw", [["", "Any warranty"], ["g", "Guarantee"], ["n", "Non-Guarantee"], ["u", "Other"]], f.warranty)}
+   ${sel("ps", [["", "Any stock"], ["in", "In stock"], ["out", "Out of stock"]], f.stock)}${sel("pa", [["", "Shown & hidden"], ["1", "Shown"], ["0", "Hidden"]], f.active)}${sel("pd", [["", "All"], ["1", "Deals only"]], f.deal)}
+   <button class="btn s" onclick="filterProducts()">Search</button></div>
+  <p class="mute sm" style="margin-bottom:8px">${d.total} products · edit price, MRP, stock and switches right here, then save.</p>
+  <div class="tw"><table class="t"><tr><th></th><th>Product</th><th>Category</th><th class="num">Price ₹</th><th class="num">MRP ₹</th><th>In stock</th><th class="num">Qty</th><th>Deal</th><th>Shown</th></tr>
+  ${d.products.map((p) => `<tr><td style="width:56px">${p.image ? `<img class="thumb" src="${esc(p.image)}" alt="">` : `<span class="thumb e">${I("tag")}</span>`}</td>
+    <td style="min-width:240px"><a class="b" href="#/products/${p.id}">${esc(p.name)}</a><div class="mute sm">#${p.id}${p.brand ? " · " + esc(p.brand) : ""}${p.sku ? " · " + esc(p.sku) : ""}${p.variations ? ` · ${plural(p.variations, "option")}` : ""}</div></td>
+    <td>${esc(p.cat)}<div><span class="chip ${p.warranty}">${WL[p.warranty]}</span></div></td>
+    <td class="num"><input class="cell" value="${p.price ?? ""}" oninput="mark(${p.id},'price',this)"></td><td class="num"><input class="cell" value="${p.mrp ?? ""}" oninput="mark(${p.id},'mrp',this)"></td>
+    <td><button class="sw${p.in_stock ? " on" : ""}" onclick="tog(${p.id},'in_stock',this)" title="In stock"></button></td>
+    <td class="num"><input class="cell" style="width:60px" placeholder="–" value="${p.stock_qty ?? ""}" oninput="mark(${p.id},'stock_qty',this)"></td>
+    <td><button class="sw${p.deal ? " on" : ""}" onclick="tog(${p.id},'deal',this)" title="Pin to Deals of the day"></button></td>
+    <td><button class="sw${p.active ? " on" : ""}" onclick="tog(${p.id},'active',this)" title="Shown on website & app"></button></td></tr>`).join("")}</table>${d.products.length ? "" : '<div class="empty">No products match</div>'}</div>
+  ${pager(d, (p) => link({ page: p }))}<div id="savebar"></div>`;
+}
+function filterProducts() { location.hash = "#/products" + qs({ q: val("pq"), cat: val("pc"), warranty: val("pw"), stock: val("ps"), active: val("pa"), deal: val("pd") }); }
+function mark(id, k, el) { const orig = VIEW.products[id][k]; const v = el.value.trim(); (dirty[id] ||= { id })[k] = v; el.classList.toggle("dirty", String(orig ?? "") !== v); if (String(orig ?? "") === v) { delete dirty[id][k]; if (Object.keys(dirty[id]).length === 1) delete dirty[id]; } saveBar(); }
+function tog(id, k, el) { el.classList.toggle("on"); const v = el.classList.contains("on") ? 1 : 0; (dirty[id] ||= { id })[k] = v; if (VIEW.products[id][k] === v) { delete dirty[id][k]; if (Object.keys(dirty[id]).length === 1) delete dirty[id]; } saveBar(); }
+function saveBar() { const n = Object.keys(dirty).length; $("savebar").innerHTML = n ? `<div class="savebar"><b>${plural(n, "product")} changed</b><span class="mute" style="color:#9fb3da">Not saved yet</span><button class="btn o s" style="margin-left:auto" onclick="render()">Discard</button><button class="btn s" onclick="saveQuick()">Save changes</button></div>` : ""; }
+async function saveQuick() {
+  const items = Object.values(dirty);
+  for (const it of items) { const p = VIEW.products[it.id], price = "price" in it ? Number(it.price) : p.price, mrp = "mrp" in it ? Number(it.mrp) : p.mrp;
+    if (("price" in it && it.price !== "" && !(price >= 0)) || ("mrp" in it && it.mrp !== "" && !(mrp >= 0))) return toast(`Check the price of ${p.name}`, true);
+    if (price && mrp && mrp < price) return toast(`MRP is lower than price for ${p.name}`, true); }
+  try { const r = await PATCH("/admin/products", { items }); toast(`Saved ${plural(r.updated, "product")}`); render(); } catch (e) { fail(e); }
+}
+function importModal() {
+  modal(`<h2>Import products from Excel</h2><p class="mute" style="margin-bottom:12px">Export first, edit the sheet in Excel, then upload it here. You'll see every change before anything is saved.</p>
+  <input type="file" id="xf" accept=".xlsx" class="in" style="width:100%;padding-top:7px"><div id="xr"></div><div class="err" id="xerr"></div>
+  <div class="act"><button class="btn o" onclick="closeModal()">Close</button><button class="btn" id="xb" onclick="runImport(0)">Check file</button></div>`, true);
+}
+async function runImport(apply) {
+  const f = $("xf").files[0]; if (!f) return ($("xerr").textContent = "Choose the Excel file first");
+  const fd = new FormData(); fd.append("file", f); $("xerr").textContent = ""; $("xb").disabled = true;
+  try {
+    const r = await POST("/admin/products-import" + (apply ? "?apply=1" : ""), fd, true);
+    if (r.applied) { closeModal(); toast(`Updated ${r.updated}, added ${r.created}`); render(); return; }
+    $("xr").innerHTML = `<div style="margin:14px 0 8px"><span class="chip on">${r.updated} to update</span> <span class="chip">${r.created} new</span> ${r.errors.length ? `<span class="chip off">${r.errors.length} problems</span>` : ""}</div>
+     ${r.errors.length ? `<div class="card" style="border-color:#f6c5ca;margin-bottom:10px"><b style="color:var(--red)">Fix these rows in Excel, then upload again:</b>${r.errors.map((e) => `<div class="sm">Row ${e.row}: ${esc(e.error)}</div>`).join("")}</div>` : ""}
+     <div class="tw" style="max-height:340px">${r.changes.length || r.creates.length ? `<table class="t"><tr><th>Row</th><th>Product</th><th>Changes</th></tr>${r.changes.map((c) => `<tr><td>${c.row}</td><td>${esc(c.name)}</td><td class="sm">${Object.entries(c.diff).map(([k, d]) => `<div><b>${k.replace("_", " ")}</b>: ${esc(d.from)} → ${esc(d.to)}</div>`).join("")}</td></tr>`).join("")}${r.creates.map((c) => `<tr><td>${c.row}</td><td>${esc(c.name)}</td><td class="sm"><span class="chip">New product</span></td></tr>`).join("")}</table>` : '<div class="empty">Nothing changed</div>'}</div>`;
+    $("xb").textContent = "Save these changes"; $("xb").disabled = !!r.errors.length || !(r.updated + r.created); $("xb").onclick = () => runImport(1);
+  } catch (e) { $("xerr").textContent = e.message; $("xb").disabled = false; }
+}
+
+async function productEdit(id) {
+  await loadCats();
+  const brands = (await GET("/admin/brands")).brands;
+  const p = id === "new" ? { name: "", cat_id: CATS[0]?.id, warranty: "g", brand: "", price: "", mrp: "", in_stock: 1, stock_qty: null, purchasable: 1, sku: "", short_html: "", desc_html: "", weight: "", dimensions: "", deal: 0, active: 1, tags: [], attributes: [], images: [], variations: [] } : await GET("/admin/products/" + id);
+  VIEW.p = p;
+  const attrName = p.variations.length ? Object.keys(p.variations[0].attributes)[0] || "Option" : "Color";
+  const rd = (name, opts, cur) => `<div class="radio">${opts.map(([v, l]) => `<label class="${String(cur) === String(v) ? "on" : ""}"><input type="radio" name="${name}" value="${v}"${String(cur) === String(v) ? " checked" : ""} onchange="this.closest('.radio').querySelectorAll('label').forEach(l=>l.classList.toggle('on',l.contains(this)))">${l}</label>`).join("")}</div>`;
+  const sw = (id, on, label) => `<label class="tg"><button type="button" class="sw${on ? " on" : ""}" id="${id}" onclick="this.classList.toggle('on')"></button>${label}</label>`;
+  return `<div class="crumb"><a href="#/products">Products</a> › ${id === "new" ? "New product" : "#" + p.id}</div>
+  <div class="top"><h1>${id === "new" ? "Add product" : esc(p.name)}</h1>${id !== "new" ? `<a class="btn o" target="_blank" href="/#/p/${p.id}">View on website</a><button class="btn r" onclick="delProduct(${p.id})">Delete</button>` : ""}<button class="btn" onclick="saveProduct()">${id === "new" ? "Create product" : "Save changes"}</button></div>
+  <div class="grid3"><div class="stack">
+    <div class="card"><h3>Basics</h3><div class="form"><label class="fl full">Name<input class="in" id="fn" value="${esc(p.name)}"></label>
+      <label class="fl">Category<select class="in" id="fc">${CATS.map((c) => `<option value="${c.id}"${c.id === p.cat_id ? " selected" : ""}>${esc(c.name)}</option>`).join("")}</select></label>
+      <label class="fl">Brand <input class="in" id="fb" list="bl" value="${esc(p.brand || "")}" placeholder="Leave empty for Other brands"><datalist id="bl">${brands.map((b) => `<option value="${esc(b.name)}">`).join("")}</datalist></label>
+      <div class="fl full">Warranty${rd("fw", [["g", "Guarantee"], ["n", "Non-Guarantee"], ["u", "Not specified"]], p.warranty)}</div></div></div>
+    <div class="card"><h3>Short description <span class="mute sm" style="font-weight:500">shown next to the price</span></h3>${editor("eds", p.short_html)}</div>
+    <div class="card"><h3>Description</h3>${editor("edd", p.desc_html)}</div>
+    <div class="card"><h3>Photos <span class="mute sm" style="font-weight:500">first photo is the main one</span></h3>${id === "new" ? '<p class="mute">Create the product first, then add photos.</p>' : `<div class="ph" id="photos">${photoGrid(p.images)}</div>`}</div>
+    <div class="card"><h3>Options <span class="mute sm" style="font-weight:500">e.g. colours, each with its own price and stock</span></h3>
+      <label class="fl" style="max-width:240px;margin-bottom:10px">Option name<input class="in" id="van" value="${esc(attrName)}"></label>
+      <div class="tw"><table class="t" id="vt"><tr><th>Option</th><th>Price ₹</th><th>MRP ₹</th><th>In stock</th><th>Qty</th><th>SKU</th><th></th></tr>${p.variations.map(varRow).join("")}</table></div>
+      <button class="btn o s" style="margin-top:10px" onclick="$('vt').insertAdjacentHTML('beforeend',varRow({attributes:{},in_stock:1}))">+ Add option</button></div>
+  </div><div class="stack">
+    <div class="card"><h3>Price & stock</h3><div class="form"><label class="fl">Price ₹<input class="in" id="fp" inputmode="decimal" value="${p.price ?? ""}" placeholder="Empty = info only"></label><label class="fl">MRP ₹<input class="in" id="fm" inputmode="decimal" value="${p.mrp ?? ""}"></label>
+      <label class="fl">Stock qty<input class="in" id="fq" inputmode="numeric" value="${p.stock_qty ?? ""}" placeholder="Not counted"></label><label class="fl">SKU<input class="in" id="fs" value="${esc(p.sku || "")}"></label></div>
+      <div class="stack" style="margin-top:14px">${sw("fis", p.in_stock, "In stock")}${sw("fpu", p.purchasable, "Can be ordered online")}${sw("fde", p.deal, "Pin to Deals of the day")}${sw("fac", p.active, "Shown on website & app")}</div>
+      <p class="mute sm" style="margin-top:10px">Without a price, the product shows as info only (Read more), like on the old website. If you fill in a stock qty, it counts down with each order and the product goes out of stock at 0.</p></div>
+    <div class="card"><h3>Details</h3><div class="stack"><label class="fl">Weight<input class="in" id="fwt" value="${esc(p.weight || "")}" placeholder="e.g. 0.15 kg"></label><label class="fl">Dimensions<input class="in" id="fdi" value="${esc(p.dimensions || "")}" placeholder="e.g. 10 × 6 × 3 cm"></label><label class="fl">Tags (comma separated)<textarea class="in" id="ftg" rows="3">${esc(p.tags.join(", "))}</textarea></label></div></div>
+    ${id !== "new" ? `<div class="card sm mute">Added ${dt(p.created_at, false)} · updated ${dt(p.updated_at)}${p.reviewCount ? ` · ${plural(p.reviewCount, "review")}` : ""}${p.source_url ? `<br>Imported from <a href="${esc(p.source_url)}" target="_blank" style="color:var(--blue)">old website</a>` : ""}</div>` : ""}
+  </div></div><div class="err" id="perr"></div>`;
+}
+const varRow = (v) => `<tr data-id="${v.id || ""}"><td><input class="in" style="width:130px" value="${esc(Object.values(v.attributes || {})[0] || "")}" placeholder="e.g. Black"></td><td><input class="in" style="width:80px" value="${v.price ?? ""}"></td><td><input class="in" style="width:80px" value="${v.mrp ?? ""}"></td><td><button type="button" class="sw${v.in_stock ? " on" : ""}" onclick="this.classList.toggle('on')"></button></td><td><input class="in" style="width:60px" value="${v.stock_qty ?? ""}"></td><td><input class="in" style="width:90px" value="${esc(v.sku || "")}"></td><td><button class="btn r s" onclick="this.closest('tr').remove()">Remove</button></td></tr>`;
+function photoGrid(imgs) {
+  return imgs.map((im, i) => `<div class="p"><img src="${esc(im.small_url)}" alt=""><div><button title="Move left" ${i ? "" : "disabled"} onclick="movePhoto(${i},-1)">←</button><button title="Delete" onclick="delPhoto(${im.id})">✕</button><button title="Move right" ${i < imgs.length - 1 ? "" : "disabled"} onclick="movePhoto(${i},1)">→</button></div></div>`).join("") +
+    `<label class="add">${I("tag")}Add photos<span class="mute sm" style="font-weight:500">JPG, PNG or WebP · made into fast WebP automatically</span><input type="file" accept="image/*" multiple hidden onchange="addPhotos(this.files)"></label>`;
+}
+async function addPhotos(files) {
+  if (!files.length) return; const fd = new FormData(); [...files].forEach((f) => fd.append("photos", f)); toast("Uploading…");
+  try { const r = await POST(`/admin/products/${VIEW.p.id}/images`, fd, true); VIEW.p.images = r.images; $("photos").innerHTML = photoGrid(r.images); toast(r.failed.length ? `Not an image: ${r.failed.join(", ")}` : "Photos added", !!r.failed.length); } catch (e) { fail(e); }
+}
+async function delPhoto(img) { if (!confirm("Delete this photo?")) return; try { const r = await DEL(`/admin/products/${VIEW.p.id}/images/${img}`); VIEW.p.images = r.images; $("photos").innerHTML = photoGrid(r.images); } catch (e) { fail(e); } }
+async function movePhoto(i, d) { const ids = VIEW.p.images.map((x) => x.id); [ids[i], ids[i + d]] = [ids[i + d], ids[i]]; try { const r = await PUT(`/admin/products/${VIEW.p.id}/images/order`, { ids }); VIEW.p.images = r.images; $("photos").innerHTML = photoGrid(r.images); } catch (e) { fail(e); } }
+async function saveProduct() {
+  const on = (id) => $(id).classList.contains("on") ? 1 : 0, an = val("van") || "Option";
+  const variations = [...$("vt").querySelectorAll("tr[data-id]")].map((tr) => { const i = tr.querySelectorAll("input"); return { id: tr.dataset.id ? Number(tr.dataset.id) : undefined, attributes: { [an]: i[0].value.trim() }, price: i[1].value, mrp: i[2].value, in_stock: tr.querySelector(".sw").classList.contains("on") ? 1 : 0, stock_qty: i[3].value, sku: i[4].value }; }).filter((v) => v.attributes[an]);
+  const body = { name: val("fn"), cat_id: Number(val("fc")), brand: val("fb"), warranty: document.querySelector("input[name=fw]:checked")?.value || "u", price: val("fp"), mrp: val("fm"), stock_qty: val("fq"), sku: val("fs"),
+    in_stock: on("fis"), purchasable: on("fpu"), deal: on("fde"), active: on("fac"), short_html: edVal("eds"), desc_html: edVal("edd"), weight: val("fwt"), dimensions: val("fdi"), tags: val("ftg"), attributes: VIEW.p.attributes || [], variations };
+  try {
+    const r = VIEW.p.id ? await PUT("/admin/products/" + VIEW.p.id, body) : await POST("/admin/products", body);
+    toast(VIEW.p.id ? "Saved" : "Product created. Now add photos."); if (!VIEW.p.id) location.hash = "#/products/" + r.id; else render();
+  } catch (e) { $("perr").textContent = e.message; fail(e); }
+}
+async function delProduct(id) {
+  if (!confirm("Delete this product? If it was ever ordered it will be hidden instead, so old orders stay intact.")) return;
+  try { const r = await DEL("/admin/products/" + id); toast(r.hidden ? "Hidden (it has past orders)" : "Deleted"); location.hash = "#/products"; } catch (e) { fail(e); }
+}
+
+/* =================== categories & brands =================== */
+async function categoriesView() {
+  await loadCats(); const b = await GET("/admin/brands");
+  return `<div class="top"><h1>Categories & brands</h1></div><div class="grid2" style="align-items:start">
+  <div class="card"><h3>Categories <button class="btn s" style="margin-left:auto" onclick="addCat()">+ Add</button></h3><p class="mute sm" style="margin-bottom:10px">Order here = order on the website and app. Home slots 1–4 are the four big buttons on the Home page.</p>
+   <div class="tw" style="border:0"><table class="t"><tr><th></th><th>Name</th><th>Icon</th><th>Home</th><th class="num">Products</th><th>Shown</th><th></th></tr>
+   ${CATS.map((c, i) => `<tr><td style="white-space:nowrap"><button class="btn o s" ${i ? "" : "disabled"} onclick="moveCat(${i},-1)">↑</button> <button class="btn o s" ${i < CATS.length - 1 ? "" : "disabled"} onclick="moveCat(${i},1)">↓</button></td>
+     <td><input class="in" style="width:150px" value="${esc(c.name)}" onchange="updCat(${c.id},{name:this.value})"></td>
+     <td><span style="display:flex;align-items:center;gap:6px">${I(c.icon || "others")}<select class="in" style="height:32px" onchange="updCat(${c.id},{icon:this.value})">${ICONS.map((x) => `<option${x === c.icon ? " selected" : ""}>${x}</option>`).join("")}</select></span></td>
+     <td><select class="in" style="height:32px" onchange="updCat(${c.id},{home_rank:Number(this.value)||null})"><option value="">–</option>${[1, 2, 3, 4].map((n) => `<option${c.home_rank === n ? " selected" : ""}>${n}</option>`).join("")}</select></td>
+     <td class="num"><a href="#/products?cat=${c.id}" class="b">${c.products}</a><div class="mute sm">${c.g} G · ${c.n} NG</div></td>
+     <td><button class="sw${c.active ? " on" : ""}" onclick="updCat(${c.id},{active:!this.classList.contains('on')})"></button></td>
+     <td>${c.products ? "" : `<button class="btn r s" onclick="delCat(${c.id})">Delete</button>`}</td></tr>`).join("")}</table></div></div>
+  <div class="card"><h3>Brands <button class="btn s" style="margin-left:auto" onclick="addBrand()">+ Add</button></h3><p class="mute sm" style="margin-bottom:10px">Rename a brand to the name of another brand to merge them (e.g. "Boat" into "boAt"). ${b.unbranded} products have no brand and show as "Other brands".</p>
+   <input class="in" placeholder="Filter brands" style="width:100%;margin-bottom:10px" oninput="document.querySelectorAll('#brt tr[data-n]').forEach(r=>r.style.display=r.dataset.n.includes(this.value.toLowerCase())?'':'none')">
+   <div class="tw" style="border:0;max-height:620px"><table class="t" id="brt"><tr><th>Logo</th><th>Brand</th><th class="num">Products</th><th></th></tr>
+   ${b.brands.map((x) => `<tr data-n="${esc(x.name.toLowerCase())}"><td style="white-space:nowrap"><label title="Upload logo" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px">${x.logo_url ? `<img class="thumb" style="width:64px" src="${esc(x.logo_url)}" alt="">` : `<span class="thumb e" style="width:64px;font-size:11px;color:var(--blue);font-weight:600">+ Logo</span>`}<input type="file" accept="image/*" hidden onchange="brandLogo(${x.id},this.files[0])"></label>${x.logo_url ? ` <button class="btn o s" title="Remove logo" onclick="delLogo(${x.id})">✕</button>` : ""}</td><td><input class="in" style="width:200px" value="${esc(x.name)}" onchange="renBrand(${x.id},this.value)"></td><td class="num"><a class="b" href="#/products?q=${encodeURIComponent(x.name)}">${x.products}</a></td><td>${x.products ? "" : `<button class="btn r s" onclick="delBrand(${x.id})">Delete</button>`}</td></tr>`).join("")}</table></div></div></div>`;
+}
+async function updCat(id, b) { try { await PUT("/admin/categories/" + id, b); toast("Saved"); render(); } catch (e) { fail(e); } }
+async function moveCat(i, d) { const ids = CATS.map((c) => c.id); [ids[i], ids[i + d]] = [ids[i + d], ids[i]]; try { await PUT("/admin/categories-order", { ids }); render(); } catch (e) { fail(e); } }
+async function addCat() { const n = prompt("New category name:"); if (n) try { await POST("/admin/categories", { name: n, icon: "others" }); render(); } catch (e) { fail(e); } }
+async function delCat(id) { if (confirm("Delete this empty category?")) try { await DEL("/admin/categories/" + id); render(); } catch (e) { fail(e); } }
+async function renBrand(id, name) { try { const r = await PUT("/admin/brands/" + id, { name }); toast(r.merged ? "Merged into the existing brand" : "Renamed"); render(); } catch (e) { fail(e); } }
+async function brandLogo(id, f) { if (!f) return; const fd = new FormData(); fd.append("logo", f); try { await POST(`/admin/brands/${id}/logo`, fd, true); toast("Logo saved"); render(); } catch (e) { fail(e); } }
+async function delLogo(id) { if (confirm("Remove this brand's logo?")) try { await DEL(`/admin/brands/${id}/logo`); render(); } catch (e) { fail(e); } }
+async function addBrand() { const n = prompt("New brand name:"); if (n) try { await POST("/admin/brands", { name: n }); render(); } catch (e) { fail(e); } }
+async function delBrand(id) { if (confirm("Delete this brand?")) try { await DEL("/admin/brands/" + id); render(); } catch (e) { fail(e); } }
+
+/* =================== customers =================== */
+async function customersView(q) {
+  const f = { q: q.q || "", sort: q.sort || "", page: q.page || 1 }, d = await GET("/admin/customers" + qs({ ...f, per: 50 })), link = (o) => "#/customers" + qs({ ...f, page: "", ...o });
+  return `<div class="top"><h1>Customers</h1></div>
+  <form class="tools" onsubmit="event.preventDefault();location.hash='#/customers'+qs({q:val('cq'),sort:val('cs')})"><input class="in" id="cq" placeholder="Name, email or phone" value="${esc(f.q)}" style="width:260px">
+   <select class="in" id="cs" onchange="this.form.requestSubmit()">${[["", "Newest first"], ["spent", "Most spent"], ["orders", "Most orders"], ["name", "Name"]].map(([v, l]) => `<option value="${v}"${f.sort === v ? " selected" : ""}>${l}</option>`).join("")}</select><button class="btn s">Search</button></form>
+  <div class="tw"><table class="t"><tr><th>Customer</th><th>Phone</th><th class="num">Orders</th><th class="num">Spent</th><th>Last order</th><th>Joined</th><th></th></tr>
+  ${d.customers.map((c) => `<tr class="cl" onclick="location.hash='#/customers/${c.id}'"><td><div class="b">${esc(c.name)}</div><span class="mute sm">${esc(c.email)}</span></td><td>${esc(c.phone)}</td><td class="num">${c.orders}</td><td class="num b">${inr(c.spent)}</td><td class="mute">${c.last_order ? dt(c.last_order, false) : "—"}</td><td class="mute">${dt(c.created_at, false)}</td><td>${c.blocked ? '<span class="chip off">Blocked</span>' : ""}</td></tr>`).join("")}</table>${d.customers.length ? "" : '<div class="empty">No customers yet</div>'}</div>${pager(d, (p) => link({ page: p }))}`;
+}
+async function customerView(id) {
+  const c = await GET("/admin/customers/" + id), spent = c.orders.filter((o) => o.status !== "Cancelled").reduce((t, o) => t + o.total, 0);
+  return `<div class="crumb"><a href="#/customers">Customers</a> › ${esc(c.name)}</div><div class="top"><h1>${esc(c.name)} ${c.blocked ? '<span class="chip off">Blocked</span>' : ""}</h1>
+   <button class="btn ${c.blocked ? "" : "r"}" onclick="blockCust(${c.id},${c.blocked ? 0 : 1})">${c.blocked ? "Unblock" : "Block account"}</button></div>
+  <div class="grid3"><div class="card"><h3>Orders (${c.orders.length})</h3>${c.orders.length ? orderTable(c.orders.map((o) => ({ ...o, lines: o.items.length, city: o.address.city }))) : '<div class="empty">No orders yet</div>'}</div>
+  <div class="stack"><div class="card"><h3>Contact</h3><div>${esc(c.email)}</div><div>${esc(c.phone)}</div><div class="mute sm" style="margin-top:8px">Joined ${dt(c.created_at, false)} · last sign-in ${dt(c.last_login)}<br>${plural(c.wishlist, "product")} in wishlist</div>
+    <div class="kv t" style="margin-top:12px"><span>Total spent</span><span>${inr(spent)}</span></div></div>
+   <div class="card"><h3>Addresses</h3>${c.addresses.map((a) => `<div style="padding:8px 0;border-bottom:1px solid var(--line);line-height:1.5"><b>${esc(a.name)}</b> ${a.is_default ? '<span class="chip">Default</span>' : ""}<br>${esc(a.line)}${a.landmark ? ", " + esc(a.landmark) : ""}<br>${esc(a.city)}, ${esc(a.state)} – ${esc(a.pin)}<br><span class="mute">${esc(a.phone)}</span></div>`).join("") || '<span class="mute">None saved</span>'}</div></div></div>`;
+}
+async function blockCust(id, b) { if (b && !confirm("Block this customer? They are signed out and can't sign in or order.")) return; try { await PATCH("/admin/customers/" + id, { blocked: !!b }); toast(b ? "Blocked" : "Unblocked"); render(); } catch (e) { fail(e); } }
+
+/* =================== staff =================== */
+const PLABEL = { dashboard: "Dashboard", orders: "Orders", products: "Products, categories & brands", customers: "Customers", settings: "Settings & policies" };
+async function staffView() {
+  const d = await GET("/admin/staff"); VIEW.staff = d.staff;
+  return `<div class="top"><h1>Staff</h1><button class="btn" onclick="staffModal()">+ Add staff</button></div><p class="mute" style="margin:-8px 0 14px">Staff sign in at this same /admin page and only see what you tick for them. Admins see everything.</p>
+  <div class="tw"><table class="t"><tr><th>Name</th><th>Role</th><th>Can access</th><th>Last sign-in</th><th></th></tr>
+  ${d.staff.map((s) => `<tr><td><div class="b">${esc(s.name)}</div><span class="mute sm">${esc(s.email)}</span></td><td>${s.role === "admin" ? '<span class="chip">Admin</span>' : "Staff"} ${s.blocked ? '<span class="chip off">Disabled</span>' : ""}</td>
+   <td>${s.role === "admin" ? '<span class="mute">Everything</span>' : s.perms.map((p) => `<span class="chip u" style="margin:2px">${PLABEL[p] || p}</span>`).join("") || '<span class="mute">Nothing yet</span>'}</td><td class="mute">${dt(s.last_login)}</td>
+   <td style="white-space:nowrap">${s.id === ME.id ? '<span class="mute">You</span>' : `<button class="btn o s" onclick="staffModal(${s.id})">Edit</button> <button class="btn r s" onclick="rmStaff(${s.id})">Remove access</button>`}</td></tr>`).join("")}</table></div>`;
+}
+function staffModal(id) {
+  const s = id ? VIEW.staff.find((x) => x.id === id) : { name: "", email: "", role: "staff", perms: ["orders"] };
+  modal(`<h2>${id ? "Edit " + esc(s.name) : "Add staff member"}</h2><div class="form"><label class="fl">Name<input class="in" id="sn" value="${esc(s.name)}"></label><label class="fl">Email<input class="in" id="se" value="${esc(s.email)}" ${id ? "disabled" : ""}></label>
+   <label class="fl">${id ? "New password (optional)" : "Password"}<input class="in" id="sp" type="text" placeholder="8+ characters"></label><label class="fl">Role<select class="in" id="sr" onchange="$('spm').style.display=this.value==='admin'?'none':''"><option value="staff">Staff</option><option value="admin"${s.role === "admin" ? " selected" : ""}>Admin (everything)</option></select></label>
+   <div class="fl full" id="spm" style="${s.role === "admin" ? "display:none" : ""}">Can access${Object.entries(PLABEL).map(([k, l]) => `<label class="tg" style="font-weight:500"><input type="checkbox" value="${k}"${s.perms.includes(k) ? " checked" : ""}> ${l}</label>`).join("")}</div>
+   ${id ? `<label class="tg full"><input type="checkbox" id="sbk"${s.blocked ? " checked" : ""}> Disable this login</label>` : ""}</div><div class="err" id="serr"></div>
+   <div class="act"><button class="btn o" onclick="closeModal()">Cancel</button><button class="btn" onclick="saveStaff(${id || 0})">${id ? "Save" : "Add staff"}</button></div>`);
+}
+async function saveStaff(id) {
+  const perms = [...document.querySelectorAll("#spm input:checked")].map((x) => x.value), b = { name: val("sn"), role: val("sr"), perms };
+  if ($("sp").value) b.password = $("sp").value; if (id) b.blocked = $("sbk").checked;
+  try { if (id) await PUT("/admin/staff/" + id, b); else await POST("/admin/staff", { ...b, email: val("se") }); closeModal(); toast("Saved"); render(); } catch (e) { $("serr").textContent = e.message; }
+}
+async function rmStaff(id) { if (confirm("Remove admin access? Their shopping account stays.")) try { await DEL("/admin/staff/" + id); render(); } catch (e) { fail(e); } }
+
+/* =================== settings & policies =================== */
+async function settingsView() {
+  const [s, p] = await Promise.all([GET("/admin/settings"), GET("/admin/pages")]); VIEW.pages = p.pages;
+  return `<div class="top"><h1>Settings & policies</h1></div><div class="grid2" style="align-items:start"><div class="stack">
+   <div class="card"><h3>Contact shown on website & app</h3><div class="form"><label class="fl">Phone<input class="in" id="sph" value="${esc(s.phone)}"></label><label class="fl">Email<input class="in" id="sem" value="${esc(s.email)}"></label></div></div>
+   <div class="card"><h3>Orders</h3><div class="form"><label class="fl">Minimum order value ₹<input class="in" id="smo" inputmode="numeric" value="${esc(s.min_order)}"></label><label class="fl">Email for new-order alerts<input class="in" id="sne" value="${esc(s.notify_email || "")}"></label></div>
+    <label class="tg" style="margin-top:14px"><button type="button" class="sw${s.allow_cancel === "1" ? " on" : ""}" id="sac" onclick="this.classList.toggle('on')"></button>Customers can cancel while an order is still "New"</label></div>
+   <button class="btn" onclick="saveSettings()">Save settings</button><div class="err" id="seterr"></div></div>
+  <div class="card"><h3>Policies <button class="btn s" style="margin-left:auto" onclick="newPage()">+ Add</button></h3><p class="mute sm" style="margin-bottom:10px">Shown under Policies and Help & support on the website and app.</p>
+   ${p.pages.map((pg, i) => `<div style="display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)"><button class="btn o s" ${i ? "" : "disabled"} onclick="movePage(${i},-1)">↑</button><button class="btn o s" ${i < p.pages.length - 1 ? "" : "disabled"} onclick="movePage(${i},1)">↓</button><a class="b" style="flex:1" href="#/pages/${pg.id}">${esc(pg.title)}</a>${pg.active ? "" : '<span class="chip off">Hidden</span>'}<a class="btn o s" href="#/pages/${pg.id}">Edit</a></div>`).join("") || '<div class="empty">No policies yet</div>'}</div></div>`;
+}
+async function saveSettings() {
+  try { await PUT("/admin/settings", { phone: val("sph"), email: val("sem"), min_order: val("smo"), notify_email: val("sne"), allow_cancel: $("sac").classList.contains("on") }); toast("Settings saved"); render(); } catch (e) { $("seterr").textContent = e.message; }
+}
+async function movePage(i, d) { const ids = VIEW.pages.map((x) => x.id); [ids[i], ids[i + d]] = [ids[i + d], ids[i]]; try { await PUT("/admin/pages-order", { ids }); render(); } catch (e) { fail(e); } }
+async function newPage() { const t = prompt("Policy title, e.g. Shipping Policy:"); if (t) try { const r = await POST("/admin/pages", { title: t, html: "" }); location.hash = "#/pages/" + r.id; } catch (e) { fail(e); } }
+async function pageView(id) {
+  const pg = (await GET("/admin/pages")).pages.find((x) => x.id === Number(id)); if (!pg) return '<div class="empty">Page not found</div>';
+  return `<div class="crumb"><a href="#/settings">Settings & policies</a> › ${esc(pg.title)}</div><div class="top"><h1>Edit policy</h1><button class="btn r" onclick="delPage(${pg.id})">Delete</button><button class="btn" onclick="savePage(${pg.id})">Save</button></div>
+  <div class="card stack"><label class="fl">Title<input class="in" id="pgt" value="${esc(pg.title)}"></label><label class="tg"><button type="button" class="sw${pg.active ? " on" : ""}" id="pga" onclick="this.classList.toggle('on')"></button>Shown on website & app</label>${editor("pge", pg.html)}<p class="mute sm">Last updated ${dt(pg.updated_at)}</p></div>`;
+}
+async function savePage(id) { try { await PUT("/admin/pages/" + id, { title: val("pgt"), html: edVal("pge"), active: $("pga").classList.contains("on") }); toast("Saved"); } catch (e) { fail(e); } }
+async function delPage(id) { if (confirm("Delete this policy page?")) try { await DEL("/admin/pages/" + id); location.hash = "#/settings"; } catch (e) { fail(e); } }
+
+/* =================== router =================== */
+async function render() {
+  const root = $("root");
+  if (!ME) { root.innerHTML = loginView(); return; }
+  const [path, query] = location.hash.replace(/^#\/?/, "").split("?"), q = Object.fromEntries(new URLSearchParams(query || "")), [r, a] = path.split("/");
+  const first = NAV.find((n) => n[3] === "admin" ? ME.role === "admin" : can(n[3]))?.[0] || "orders";
+  const route = r || first;
+  const views = { dashboard: ["dashboard", () => dashboardView()], orders: ["orders", () => a ? orderView(a) : ordersView(q)], products: ["products", () => a ? productEdit(a) : productsView(q)], categories: ["products", () => categoriesView()],
+    customers: ["customers", () => a ? customerView(a) : customersView(q)], staff: ["admin", () => staffView()], settings: ["settings", () => settingsView()], pages: ["settings", () => pageView(a)] };
+  const v = views[route];
+  const navKey = route === "pages" ? "settings" : route;
+  if (!v || (v[0] === "admin" ? ME.role !== "admin" : !can(v[0]))) { root.innerHTML = shell("", '<div class="empty">You don\'t have access to this page.</div>'); return; }
+  if (!$("main")) root.innerHTML = shell(navKey, '<div class="empty">Loading…</div>');
+  try { const html = await v[1](); root.innerHTML = shell(navKey, html); if (route === "products" && !a) saveBar(); }
+  catch (e) { if (ME) root.innerHTML = shell(navKey, `<div class="empty">${esc(e.message)}<br><br><button class="btn o" onclick="render()">Try again</button></div>`); }
+}
+window.addEventListener("hashchange", () => { if (Object.keys(dirty).length && !confirm("You have unsaved price/stock changes. Leave without saving?")) return; dirty = {}; render(); });
+(async () => {
+  try { const d = await GET("/auth/me"); if (d.user && d.user.role !== "customer") ME = d.user; } catch {}
+  if (ME) await refreshNewCount();
+  render();
+  setInterval(async () => { if (ME) { const before = VIEW.newCount; await refreshNewCount(); if (VIEW.newCount > (before || 0)) { toast(`New order received!`); if (/^#\/(orders|dashboard)?$/.test(location.hash.split("?")[0]) || !location.hash) render(); } } }, 60000);
+})();
+</script>
+</body>
+</html>

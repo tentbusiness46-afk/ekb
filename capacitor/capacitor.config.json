@@ -1,0 +1,13 @@
+{
+  "appId": "in.ekarolbagh.app",
+  "appName": "eKarolBagh",
+  "webDir": "www",
+  "server": {
+    "url": "https://ekarolbagh.in/app/",
+    "androidScheme": "https",
+    "cleartext": false
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}

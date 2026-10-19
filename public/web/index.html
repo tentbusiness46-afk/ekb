@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eKarolBagh – Mobile Accessories at Karol Bagh Prices</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1456d9;--blue2:#0b3fa8;--tint:#eaf1ff;--bg:#f3f7ff;--card:#fff;--text:#0f1b33;--mute:#60708f;--line:#dbe5fa;--red:#e11d2e;--amber:#c2410c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;font-size:14px}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4,.pf{font-family:'Poppins','Inter',sans-serif;font-weight:600}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+.ic{width:1em;height:1em;display:inline-block;object-fit:contain;vertical-align:-.15em;pointer-events:none}
+.wh{filter:brightness(0) invert(1)}
+
+/* top strip + header */
+.strip{background:var(--blue2);color:#dbe7ff;font-size:12px}
+.strip .wrap{display:flex;gap:22px;align-items:center;height:34px}
+.strip span{display:flex;align-items:center;gap:6px}.strip .ic{width:14px;height:14px}
+.strip .r{margin-left:auto;display:flex;gap:18px}.strip a:hover{color:#fff}
+header.hd{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.hd .wrap{display:flex;align-items:center;gap:22px;height:76px}
+.hd .logo img{height:44px;display:block}
+.sbox{flex:1;position:relative;max-width:640px}
+.sbox input{width:100%;height:46px;border:1.5px solid var(--line);border-radius:12px;padding:0 50px 0 44px;font-size:14px;outline:none;background:var(--bg)}
+.sbox input:focus{border-color:var(--blue);background:#fff}
+.sbox>.ic{position:absolute;left:15px;top:15px;width:16px;height:16px;opacity:.55}
+.sbox button{position:absolute;right:5px;top:5px;height:36px;padding:0 16px;border:0;border-radius:9px;background:var(--blue);color:#fff;font-weight:600;cursor:pointer}
+.sugg{position:absolute;left:0;right:0;top:52px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px rgba(10,30,80,.12);overflow:hidden;display:none}
+.sugg.on{display:block}
+.sugg a{display:flex;align-items:center;gap:12px;padding:9px 14px;border-bottom:1px solid var(--line)}.sugg a:last-child{border:0}
+.sugg a:hover,.sugg a.sel{background:var(--tint)}
+.sugg img.t{width:38px;height:38px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:8px;flex:none}
+.sugg b{font-weight:500;font-size:13px;display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.sugg small{color:var(--mute);font-size:11.5px}
+.hact{display:flex;gap:6px;margin-left:auto}
+.ha{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:10px;position:relative}
+.ha:hover{background:var(--tint)}
+.ha .ic{width:24px;height:24px}
+.ha small{display:block;font-size:11px;color:var(--mute);line-height:1.2}.ha b{display:block;font-size:13px;line-height:1.25}
+.badge{position:absolute;left:28px;top:3px;background:var(--blue2);color:#fff;border:2px solid #fff;font-size:10px;font-weight:700;border-radius:10px;padding:0 5px;min-width:19px;text-align:center}
+nav.cn{background:var(--blue)}
+nav.cn .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}nav.cn .wrap::-webkit-scrollbar{display:none}
+nav.cn a{display:flex;align-items:center;gap:8px;color:#fff;font-weight:500;font-size:13px;padding:12px 14px;white-space:nowrap;border-bottom:3px solid transparent}
+nav.cn a:hover,nav.cn a.on{border-bottom-color:#9cc0ff;background:rgba(255,255,255,.08)}
+nav.cn .ic{width:18px;height:18px;filter:brightness(0) invert(1)}
+
+/* generic */
+main{min-height:60vh;padding-bottom:40px}
+.crumb{font-size:12.5px;color:var(--mute);padding:18px 0 10px;display:flex;flex-wrap:wrap;gap:6px}
+.crumb a:hover{color:var(--blue)}.crumb i{font-style:normal;opacity:.6}
+.pt{font-size:24px;margin:2px 0 16px}
+.sec{margin-top:34px}
+.sh{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px}
+.sh h2{font-size:20px}.sh a{color:var(--blue);font-weight:600;font-size:13px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:46px;padding:0 22px;border-radius:11px;border:0;background:var(--blue);color:#fff;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap}
+.btn:hover{background:var(--blue2)}
+.btn.o{background:#fff;color:var(--blue);border:1.5px solid var(--blue)}.btn.o:hover{background:var(--tint)}
+.btn.s{height:36px;padding:0 14px;font-size:13px;border-radius:9px}
+.btn:disabled{background:#c9d3e6;border-color:#c9d3e6;color:#fff;cursor:not-allowed}
+.btn.w{width:100%}
+.lnk{color:var(--blue);font-weight:600;cursor:pointer}
+.mute{color:var(--mute)}
+.empty{text-align:center;padding:70px 20px;color:var(--mute)}.empty .ic{width:64px;height:64px;margin-bottom:12px}.empty p{margin-bottom:16px}
+
+/* home */
+.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;margin-top:20px}
+.hb{border-radius:20px;background:linear-gradient(120deg,var(--blue2),var(--blue) 60%,#3b82f6);color:#fff;padding:40px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;min-height:300px}
+.hb h1{font-size:36px;line-height:1.12;font-weight:700;max-width:440px}
+.hb p{opacity:.9;margin:12px 0 22px;font-size:15px;max-width:420px;line-height:1.5}
+.hb .ctas{display:flex;gap:10px;flex-wrap:wrap}
+.hb .btn{background:#fff;color:var(--blue)}.hb .btn.o{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}.hb .btn.o:hover{background:rgba(255,255,255,.12)}
+.hb .art{position:absolute;right:-10px;bottom:-14px;width:230px;height:230px;opacity:.2}
+.c4{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cbx{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;transition:border-color .15s,transform .15s}
+.cbx:hover{border-color:var(--blue);transform:translateY(-2px)}
+.cbx .ib{width:62px;height:62px;border-radius:16px;background:var(--tint);display:flex;align-items:center;justify-content:center}.cbx .ib .ic{width:40px;height:40px}
+.cbx b{font-family:Poppins,Inter,sans-serif;font-weight:600;font-size:16px;margin-top:14px;display:block}.cbx span{font-size:12px;color:var(--mute)}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.trust div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.trust .ic{width:30px;height:30px;flex:none}.trust b{display:block;font-size:13px}.trust small{color:var(--mute);font-size:11.5px}
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.cat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 10px;text-align:center;transition:border-color .15s}
+.cat:hover{border-color:var(--blue)}
+.cat .ib{width:58px;height:58px;border-radius:14px;background:var(--tint);display:flex;align-items:center;justify-content:center;margin:0 auto 10px}.cat .ib .ic{width:36px;height:36px}
+.cat b{display:block;font-size:13.5px;font-weight:600}.cat span{font-size:11.5px;color:var(--mute)}
+.appband{margin-top:40px;border-radius:20px;background:var(--blue2);color:#fff;padding:28px 34px;display:flex;align-items:center;gap:24px}
+.appband h3{font-size:20px}.appband p{opacity:.85;margin-top:4px}.appband .btn{margin-left:auto;background:#fff;color:var(--blue2)}
+.appband .ib{width:64px;height:64px;border-radius:16px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex:none}.appband .ib .ic{width:38px;height:38px}
+
+/* product grid + cards */
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.grid.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;position:relative;transition:box-shadow .15s,border-color .15s}
+.card:hover{border-color:#b9cdf5;box-shadow:0 8px 24px rgba(10,30,80,.08)}
+.cimg{display:flex;align-items:center;justify-content:center;aspect-ratio:1;border-radius:10px;background:#fff;position:relative;overflow:hidden;margin-bottom:10px}
+.cimg img{width:100%;height:100%;object-fit:contain}
+.cimg .emo .ic{width:60px;height:60px}
+.card.oos .cimg img{opacity:.4}
+.oosp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--red);color:#fff;font-weight:700;font-size:12px;padding:6px 13px;border-radius:20px;white-space:nowrap;box-shadow:0 2px 8px rgba(225,29,46,.35);pointer-events:none}
+.wlb{position:absolute;right:18px;top:18px;width:32px;height:32px;border-radius:50%;background:#fff;border:0;box-shadow:0 1px 6px rgba(10,30,80,.18);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2}
+.wlb .ic{width:16px;height:16px}
+.cname{font-size:13px;font-weight:500;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:36px}
+.cname:hover{color:var(--blue)}
+.cmeta{font-size:11.5px;color:var(--mute);margin-top:3px;min-height:16px}
+.price{font-family:Poppins,Inter,sans-serif;font-weight:600;font-size:17px;margin-top:6px}
+.price s{font-family:Inter,sans-serif;color:var(--mute);font-size:12px;font-weight:400;margin-left:4px}
+.price em{font-style:normal;color:var(--blue);font-family:Inter,sans-serif;font-weight:700;font-size:12px;margin-left:4px}
+.cact{margin-top:auto;padding-top:10px}
+.cact .btn{width:100%}
+.oost{color:var(--red);font-weight:600}.low{color:var(--amber);font-weight:600}
+
+/* choice / brands / listing */
+.choice{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:900px}
+.gcard{display:flex;gap:16px;align-items:center;background:#fff;border:1.5px solid var(--blue);border-radius:16px;padding:22px}
+.gcard.alt{border-color:var(--line)}.gcard:hover{box-shadow:0 8px 24px rgba(10,30,80,.08)}
+.gcard.dis{opacity:.55;border-style:dashed;background:transparent;pointer-events:none}
+.gcard .gi{width:58px;height:58px;border-radius:14px;background:var(--tint);display:flex;align-items:center;justify-content:center;flex:none}.gcard .gi .ic{width:34px;height:34px}
+.gcard b{display:block;font-family:Poppins,Inter,sans-serif;font-weight:600;font-size:17px}.gcard span{display:block;font-size:13px;margin-top:2px}.gcard small{display:block;font-size:12px;color:var(--mute);margin-top:2px}
+.gcard .chev{margin-left:auto;color:var(--blue);font-size:26px}
+.bgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.brand{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 10px;text-align:center;min-width:0}
+.brand:hover{border-color:var(--blue)}
+.bl{width:56px;height:56px;border-radius:50%;background:var(--tint);color:var(--blue);font-family:Poppins,Inter,sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.bl.all{background:var(--blue);color:#fff;font-size:13px}
+.bl.lg{width:100%;max-width:130px;height:64px;border-radius:12px;background:#fff;border:1px solid var(--line);padding:6px;overflow:hidden}.bl.lg{display:flex;align-items:center;justify-content:center}.bl.lg img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
+.brand b{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.brand span{font-size:11.5px;color:var(--mute)}
+.lay{display:grid;grid-template-columns:240px 1fr;gap:20px;align-items:start}
+.side{background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 16px;position:sticky;top:96px}
+.side h4{font-size:13px;margin:14px 0 8px}
+.side .grp{border-bottom:1px solid var(--line);padding-bottom:12px}.side .grp:last-child{border:0}
+.opt{display:flex;align-items:center;gap:9px;padding:6px 0;font-size:13px;cursor:pointer}
+.opt .rd{width:16px;height:16px;border-radius:50%;border:2px solid #9fb0cf;flex:none}.opt.on .rd{border:5px solid var(--blue)}
+.opt.on{font-weight:600}.opt.dis{opacity:.4;pointer-events:none}
+.opt small{margin-left:auto;color:var(--mute);font-size:11.5px}
+.opt .cb{width:16px;height:16px;border-radius:4px;border:2px solid #9fb0cf;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px}.opt.on .cb{background:var(--blue);border-color:var(--blue)}
+.tbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:10px;flex-wrap:wrap}
+.tbar select{height:38px;border:1px solid var(--line);border-radius:9px;padding:0 10px;background:#fff}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;cursor:pointer}
+.chip.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* product page */
+.pp{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.gal{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;position:sticky;top:96px}
+.gmain{aspect-ratio:1;display:flex;align-items:center;justify-content:center;position:relative}
+.gmain img{width:100%;height:100%;object-fit:contain}
+.gmain .emo .ic{width:160px;height:160px}
+.gal.oos .gmain img{opacity:.4}.gal .oosp{font-size:18px;padding:10px 26px}
+.gal .wlb{right:16px;top:16px;width:42px;height:42px}.gal .wlb .ic{width:22px;height:22px}
+.gth{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.gth img{width:70px;height:70px;object-fit:contain;border:1.5px solid var(--line);border-radius:10px;padding:4px;background:#fff;cursor:pointer}
+.gth img.on{border-color:var(--blue)}
+.info h1{font-size:24px;line-height:1.3}
+.info .cp{color:var(--mute);font-size:13px;margin-top:6px}
+.info .price{font-size:30px;margin-top:14px}.info .price s{font-size:15px}.info .price em{font-size:15px}
+.oosbig{color:var(--red);font-weight:700;font-size:16px;margin-top:8px}
+.vlab{font-size:12.5px;font-weight:600;color:var(--mute);margin:16px 0 8px}
+.vx{opacity:.45;text-decoration:line-through}
+.buy{display:flex;gap:12px;align-items:center;margin-top:20px;flex-wrap:wrap}
+.step{display:inline-flex;align-items:center;border:1.5px solid var(--blue);border-radius:11px;overflow:hidden;height:46px}
+.step span{padding:0 15px;font-weight:700;color:var(--blue);cursor:pointer;font-size:18px;line-height:46px;user-select:none}
+.step em{font-style:normal;font-weight:700;min-width:44px;text-align:center;background:var(--tint);line-height:46px}
+.step.sm{height:36px}.step.sm span,.step.sm em{line-height:36px}.step.sm span{padding:0 11px;font-size:16px}.step.sm em{min-width:36px}
+.perks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.perks div{display:flex;gap:10px;align-items:center;background:var(--tint);border-radius:12px;padding:10px 12px;font-size:12.5px}
+.perks .ic{width:22px;height:22px;flex:none}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.tabs a{padding:12px 18px;font-weight:600;font-size:14px;color:var(--mute);border-bottom:3px solid transparent;margin-bottom:-1px;cursor:pointer}
+.tabs a.on{color:var(--blue);border-bottom-color:var(--blue)}
+.rich{font-size:14px;line-height:1.7;overflow-wrap:anywhere}
+.rich p{margin:0 0 10px}.rich ul,.rich ol{padding-left:22px;margin:0 0 10px}.rich li{margin:4px 0}
+.rich strong,.rich b{font-weight:700}.rich h1,.rich h2,.rich h3,.rich h4,.rich h5{font-size:16px;margin:14px 0 8px}
+.rich img{max-width:100%;height:auto;border-radius:10px;margin:8px 0}.rich table{border-collapse:collapse;margin:8px 0}.rich td,.rich th{border:1px solid var(--line);padding:6px 10px}
+.rich>*:last-child{margin-bottom:0}
+.info .rich{margin-top:16px}
+table.kv{width:100%;border-collapse:collapse;font-size:13.5px}table.kv td{padding:10px 12px;border-bottom:1px solid var(--line)}table.kv td:first-child{color:var(--mute);width:180px}
+.rv{padding:14px 0;border-bottom:1px solid var(--line)}.rv:last-child{border:0}
+.rvs{color:var(--blue);letter-spacing:1px}.rvs i{font-style:normal;color:var(--line)}
+.rv b{margin-left:8px}.rv small{color:var(--mute);margin-left:8px}.rv p{margin-top:6px;line-height:1.55}
+
+/* cart + checkout */
+.two{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start}
+.citem{display:grid;grid-template-columns:84px 1fr auto;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center}
+.citem:first-child{padding-top:0}.citem:last-child{border:0;padding-bottom:0}
+.citem .t{width:84px;height:84px;border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden}
+.citem .t img{width:100%;height:100%;object-fit:contain}.citem .t .ic{width:44px;height:44px}
+.citem h4{font-size:14px;font-weight:500;line-height:1.4;font-family:Inter,sans-serif}
+.citem .row{display:flex;gap:14px;align-items:center;margin-top:8px}
+.citem .lt{font-family:Poppins,Inter,sans-serif;font-weight:600;font-size:16px;text-align:right}
+.rm{color:var(--mute);font-size:12.5px;cursor:pointer}.rm:hover{color:var(--red)}
+.sum{position:sticky;top:96px}
+.sum h3{font-size:16px;margin-bottom:12px}
+.kvr{display:flex;justify-content:space-between;padding:6px 0;font-size:13.5px}
+.kvr.t{border-top:1px dashed var(--line);margin-top:8px;padding-top:12px;font-weight:700;font-size:16px}
+.free{color:#15803d;font-weight:600}
+.minbar{background:#fff7e6;border:1px solid #fde3a7;border-radius:12px;padding:12px 14px;margin:14px 0;font-size:13px;color:#7a4b00}
+.minbar small{display:block;color:#a06a10;font-size:12px;margin-top:2px}
+.minbar i{display:block;height:7px;border-radius:4px;background:#fde3a7;margin-top:10px;overflow:hidden}.minbar s{display:block;height:100%;background:#f59e0b}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fl{display:block;font-size:12.5px;font-weight:600;color:var(--mute)}
+.fl.full{grid-column:1/-1}
+.fw{display:flex;align-items:center;margin-top:6px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.fw:focus-within{border-color:var(--blue)}
+.fw input,.fw textarea{flex:1;min-width:0;border:0;outline:none;background:transparent;font-size:14px;font-weight:500;padding:11px 12px;resize:vertical}
+.fw em{font-style:normal;padding:0 12px;cursor:pointer}.fw em .ic{width:18px;height:18px;opacity:.7}
+.ferr{color:var(--red);font-size:12.5px;min-height:18px;margin-top:10px}
+.pay{display:flex;gap:12px;align-items:center;border:1.5px solid var(--blue);background:var(--tint);border-radius:12px;padding:14px}
+.pay .rd{width:18px;height:18px;border-radius:50%;border:5px solid var(--blue);flex:none}
+.pay small{display:block;color:var(--mute);font-size:12px;font-weight:400}
+.done{text-align:center;max-width:560px;margin:40px auto}
+.done .ic{width:96px;height:96px}.done h1{font-size:28px;margin:12px 0 6px}
+
+/* auth */
+.auth{max-width:440px;margin:40px auto}
+.auth .tg{display:grid;grid-template-columns:1fr 1fr;background:var(--tint);border-radius:12px;padding:4px;margin-bottom:20px}
+.auth .tg a{text-align:center;padding:10px;border-radius:9px;font-weight:600;cursor:pointer;color:var(--mute)}
+.auth .tg a.on{background:#fff;color:var(--blue);box-shadow:0 1px 4px rgba(10,30,80,.1)}
+.auth .form{grid-template-columns:1fr}
+.fgt{display:block;text-align:right;font-size:12.5px;margin-top:-4px}
+
+/* account + policies */
+.acl{display:grid;grid-template-columns:250px 1fr;gap:20px;align-items:start}
+.anav{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;position:sticky;top:96px}
+.anav a{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;font-weight:500}
+.anav a:hover{background:var(--bg)}.anav a.on{background:var(--tint);color:var(--blue);font-weight:600}
+.anav .ic{width:20px;height:20px}
+.anav .who{padding:12px;border-bottom:1px solid var(--line);margin-bottom:6px}.anav .who b{display:block}.anav .who small{color:var(--mute)}
+.ord{border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px;background:#fff}
+.ord .h{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.st{font-size:12px;font-weight:700;padding:4px 10px;border-radius:12px;background:var(--tint);color:var(--blue)}
+.st.Delivered{background:#dcfce7;color:#15803d}.st.Cancelled{background:#fee2e2;color:var(--red)}
+.ord .th{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.ord .th img,.ord .th span{width:54px;height:54px;border:1px solid var(--line);border-radius:8px;object-fit:contain;background:#fff;display:flex;align-items:center;justify-content:center}
+.ord .th .ic{width:28px;height:28px}
+
+/* footer */
+footer{background:#0b1a3d;color:#c5d3f0;margin-top:50px;font-size:13px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;padding-top:44px;padding-bottom:30px}
+footer h4{color:#fff;font-size:14px;margin-bottom:12px}
+footer a{display:block;padding:4px 0;color:#c5d3f0}footer a:hover{color:#fff}
+footer .flogo{background:#fff;border-radius:10px;padding:6px 10px;display:inline-block;margin-bottom:12px}footer .flogo img{height:38px;display:block}
+footer .ct{display:flex;align-items:center;gap:8px}.ct .ic{width:16px;height:16px;filter:brightness(0) invert(1);opacity:.8}
+footer .bot{border-top:1px solid rgba(255,255,255,.1);padding:14px 0;font-size:12px;color:#8ea3cf}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);background:#0b1a3d;color:#fff;padding:12px 18px;border-radius:12px;font-weight:500;opacity:0;transition:all .2s;z-index:50;display:flex;gap:12px;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.toast.on{opacity:1;transform:translate(-50%,0)}.toast a{color:#9cc0ff;font-weight:600}
+
+/* responsive */
+/* product sliders (Deals, Trending, More like this) */
+.slider{position:relative}
+.srow{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:2px 2px 6px}
+.srow::-webkit-scrollbar{display:none}
+.srow .card{flex:0 0 212px;scroll-snap-align:start}
+.srow .cat{flex:0 0 calc((100% - 98px)/8);min-width:128px;scroll-snap-align:start}.slider.c .sa{top:50%}
+.sa{position:absolute;top:38%;transform:translateY(-50%);z-index:3;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--blue);font-size:26px;line-height:1;cursor:pointer;box-shadow:0 4px 14px rgba(10,30,80,.15);display:flex;align-items:center;justify-content:center;padding-bottom:3px}
+.sa:hover{background:var(--tint)}.sa.l{left:-18px}.sa.r{right:-18px}.sa.off{opacity:0;pointer-events:none}
+/* desktop (769px and up): grids fill the width */
+.sbox{min-width:200px}.hd .wrap{gap:16px}.ha .t{white-space:nowrap}.ha.wl .t{display:none}
+.grid{grid-template-columns:repeat(auto-fill,minmax(185px,1fr))}.grid.g4{grid-template-columns:repeat(auto-fill,minmax(195px,1fr))}
+.cats,.bgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+/* mobile (768px and below) */
+@media (max-width:768px){
+ body{font-size:13.5px}.wrap{padding:0 12px}
+ .hd .wrap{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:10px;gap:10px}.hd .logo img{height:36px}
+ .sbox{order:3;flex-basis:100%;max-width:none}.ha .t{display:none}.ha{padding:8px}
+ .strip .r a:not(.app),.strip .l1,.strip .l2{display:none}
+ .hero,.pp,.two,.acl,.lay{grid-template-columns:1fr}.sum,.side,.anav{position:static}.gal{position:relative;top:auto}
+ .side{display:flex;flex-wrap:wrap;gap:0 24px}.side .grp{border:0}
+ .grid,.grid.g4{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}.cats,.bgrid{grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:10px}
+ .hb{padding:26px;min-height:0}.hb h1{font-size:26px}.c4{gap:10px}.cbx{padding:14px}
+ .trust{grid-template-columns:1fr}.form{grid-template-columns:1fr}.appband{flex-direction:column;align-items:flex-start}.appband .btn{margin-left:0}
+ .info h1{font-size:20px}.info .price{font-size:26px}.perks{grid-template-columns:1fr}
+ .citem{grid-template-columns:64px 1fr}.citem .t{width:64px;height:64px}.citem .lt{grid-column:2;text-align:left}
+ footer .wrap{grid-template-columns:1fr}.pt{font-size:20px}.panel{padding:16px}
+ .srow{gap:10px}.srow .card{flex-basis:158px}.srow .cat{flex-basis:108px;min-width:108px}.sa{display:none}
+}
+</style>
+</head>
+<body>
+<div class="strip"><div class="wrap"><span class="l1" id="s1"></span><span class="l2" id="s2"></span><span id="s3"></span><div class="r"><a href="#/help">Help &amp; support</a><a class="app" href="index.html" id="getapp">Get the app</a></div></div></div>
+<header class="hd"><div class="wrap">
+ <a class="logo" href="#/" id="logo"></a>
+ <div class="sbox"><span id="sic"></span><input id="hq" type="search" placeholder="Search chargers, airpods, batteries, brands…" autocomplete="off"><button onclick="doSearch()">Search</button><div class="sugg" id="sugg"></div></div>
+ <div class="hact" id="hact"></div>
+</div></header>
+<nav class="cn"><div class="wrap" id="cnav"></div></nav>
+<main><div class="wrap" id="main"></div></main>
+<footer id="foot"></footer>
+<div class="toast" id="toast"></div>
+
+<script src="ekb-assets.js"></script>
+<script src="ekarolbagh-data.js"></script>
+<script src="ekb-client.js"></script>
+<script>
+/* ======================= shared data + helpers (same rules as the app) ======================= */
+const CAT_ICON = {};
+const ICON = window.EKB_ICON || {}, LOGO = window.EKB_LOGO || "", APP_URL = "/app/";
+let MIN = 1999, PHONE = "+91 84481 39455", PHONE_TEL = "+918448139455", EMAIL = "ekarolbagh@gmail.com";
+const I = (n, c) => `<img class="ic${c ? " " + c : ""}" src="${ICON[n] || ICON.others || ""}" alt="">`;
+const EMO = {"smart watch":"watch",watch:"watch",airpods:"airpods",battery:"battery",cables:"cables",cable:"cables",charger:"charger",headphones:"headphones",neckband:"neckband",powerbank:"powerbank","power bank":"powerbank",speaker:"speaker","wired earphones":"wired",earphones:"wired",others:"others"};
+const emn = (name) => { const k = String(name || "").toLowerCase(); if (CAT_ICON[k]) return CAT_ICON[k]; if (EMO[k]) return EMO[k]; for (const x in EMO) if (k.includes(x)) return EMO[x]; return "others"; };
+
+// Sample catalogue (used only if ekarolbagh-data.js is missing)
+const DEF=[["Airpods",{g:{boAt:3,Noise:2},n:{boAt:4,CMF:2,Generic:2}},["Airdopes TWS","Buds Pro ANC","TWS Earbuds"],699],["Battery",{g:{LAVA:3,ITEL:2,Samsung:2},n:{Nokia:2}},["Battery 2000mAh","Battery 3000mAh"],149],["Charger",{g:{Apple:1,Samsung:2},n:{MI:3,Google:2}},["20W Adapter","33W Fast Charger"],349],["Speaker",{n:{JBL:2,PickPack:3}},["Boom Bass Speaker","Portable Speaker"],599],["Neckband",{n:{boAt:4,FlexGold:3}},["Rockerz Neckband","Bass Neckband"],399],["Powerbank",{g:{Mi:3}},["10000mAh Power Bank"],999]];
+function buildSample(){const cats=[],prods=[];let id=100;DEF.forEach((d,ci)=>{cats.push({id:ci+1,name:d[0]});["g","n"].forEach(g=>{const b=d[1][g]||{};Object.keys(b).forEach(br=>{for(let i=0;i<b[br];i++){id++;const price=Math.round(d[3]*(g==="n"?.7:1)*(1+(id%7)/10)/5)*5-1;prods.push({id,name:br+" "+d[2][i%d[2].length],cat:ci+1,g,brand:br,price,mrp:Math.round(price*1.6/10)*10-1,inStock:id%9!==0,images:[]})}})})});return{categories:cats,products:prods,pages:[]}}
+
+const D = window.EKB_DATA || buildSample(), LIVE = !!window.EKB_DATA;
+if (D.settings) { MIN = D.settings.minOrder ?? MIN; PHONE = D.settings.phone || PHONE; PHONE_TEL = "+91" + PHONE.replace(/\D/g, "").slice(-10); EMAIL = D.settings.email || EMAIL; }
+const P = D.products, PI = {}, CN = {};
+P.forEach(p => PI[p.id] = p);
+const isOthers = (c) => /^others?$/i.test(String(c && c.name || "").trim());
+// "Others" always goes last; an icon chosen in the admin wins over the automatic one
+const CATS = D.categories.filter(c => P.some(p => p.cat === c.id)).sort((a, b) => isOthers(a) - isOthers(b)); CATS.forEach(c => CN[c.id] = c.name);
+CATS.forEach(c => { if (c.icon && c.icon !== "others" && ICON[c.icon]) CAT_ICON[c.name.toLowerCase()] = c.icon; });
+const POL = (D.pages || []).filter(pg => pg.html && pg.title);
+const LOGOS = D.brandLogos || {}; // brand name -> logo image
+const GL = {g:"Guarantee", n:"Non-Guarantee", u:"Other"};
+
+const inr = n => "₹" + Math.round(n).toLocaleString("en-IN");
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const hasP = p => Number(p.price) > 0;
+const buyable = p => hasP(p) && p.purchasable !== false;
+const oos = (p, v) => v && typeof v === "object" ? v.inStock === false : p.inStock === false;
+const off = p => hasP(p) && p.mrp > p.price ? Math.round((1 - p.price / p.mrp) * 100) : 0;
+const stockSort = l => l.filter(p => !oos(p)).concat(l.filter(p => oos(p)));
+const imgs = p => p.images && p.images.length ? p.images : (p.img ? [{src:p.img, thumbnail:p.thumb}] : []);
+const small = im => im.webpSmall || im.thumbnail || im.medium || im.src;
+const large = im => im.webpLarge || im.medium || im.src;
+const catPath = p => (p.categoryPath ? p.categoryPath.split(" > ") : [CN[p.cat], p.brand]).filter(x => x && !/guarant|warrant/i.test(x) && x !== "Other brands").join(" › ");
+const vlabel = v => Object.values(v.attributes || {}).join(" / ");
+const ini = s => { const w = String(s).split(/\s+/).filter(Boolean); return ((w[0]||"?")[0] + (w[1] ? w[1][0] : (w[0]||"")[1] || "")).toUpperCase(); };
+const inCat = (c, g, b) => P.filter(p => p.cat === c && (!g || p.g === g) && (!b || p.brand === b));
+const minP = l => { const a = l.filter(hasP).map(p => p.price); return a.length ? Math.min(...a) : 0; };
+const plural = (n, w) => n + " " + w + (n === 1 ? "" : "s");
+function brands(c, g) {
+  const m = {}, a = [];
+  inCat(c, g).forEach(p => { let b = m[p.brand]; if (!b) { b = m[p.brand] = {name:p.brand, n:0, min:Infinity}; a.push(b); } b.n++; if (hasP(p)) b.min = Math.min(b.min, p.price); });
+  return a.sort((x, y) => (x.name === "Other brands") - (y.name === "Other brands") || y.n - x.n || x.name.localeCompare(y.name));
+}
+const OKT = {P:1,BR:1,UL:1,OL:1,LI:1,STRONG:1,B:1,EM:1,I:1,U:1,H1:1,H2:1,H3:1,H4:1,H5:1,H6:1,TABLE:1,THEAD:1,TBODY:1,TR:1,TD:1,TH:1,BLOCKQUOTE:1,HR:1,IMG:1}, RC = {};
+function rich(html) { // website HTML kept with its formatting, anything unsafe removed
+  if (!html) return ""; if (RC[html]) return RC[html];
+  const d = new DOMParser().parseFromString('<div id="r">' + html + "</div>", "text/html"), root = d.getElementById("r");
+  (function walk(n) {
+    [...n.childNodes].forEach(c => {
+      if (c.nodeType === 8) { c.remove(); return; } if (c.nodeType !== 1) return;
+      const t = c.tagName;
+      if (/^(SCRIPT|STYLE|IFRAME|OBJECT|EMBED|FORM|INPUT|BUTTON|SELECT|TEXTAREA|SVG|VIDEO|AUDIO|NOSCRIPT|LINK|META)$/.test(t)) { c.remove(); return; }
+      walk(c);
+      if (!OKT[t]) { const f = d.createDocumentFragment(); while (c.firstChild) f.appendChild(c.firstChild); c.replaceWith(f); return; }
+      const src = t === "IMG" ? c.getAttribute("src") : null;
+      [...c.attributes].forEach(a => c.removeAttribute(a.name));
+      if (t === "IMG") { if (src && /^https?:\/\//.test(src)) { c.setAttribute("src", src); c.setAttribute("loading", "lazy"); } else c.remove(); }
+    });
+  })(root);
+  return RC[html] = root.innerHTML.replace(/<p>(\s|&nbsp;|<br>)*<\/p>/g, "");
+}
+
+/* ======================= state: cart, wishlist and account come from the backend (ekb-client.js) ======================= */
+const S = {f:{stock:false, sort:"rel"}, tab:"d", gi:0, v:null, q:1};
+Object.defineProperties(S, {cart: {get: () => EKB.state.cart}, wl: {get: () => EKB.state.wl}, user: {get: () => EKB.state.user}});
+function ck(k) { const [pid, vid] = String(k).split("-"), p = PI[pid]; if (!p) return null; const v = vid && p.variations ? p.variations.find(x => String(x.id) === vid) || null : null; return {p, v, price: v && v.price != null ? v.price : p.price, label: v ? vlabel(v) : ""}; }
+const prune = () => Object.keys(S.cart).forEach(k => { const c = ck(k); if (!c || !buyable(c.p)) EKB.setQty(k, 0); }); // drop items no longer sold
+const cc = () => Object.keys(S.cart).filter(k => ck(k)).length;
+const sub = () => Object.keys(S.cart).reduce((t, k) => { const c = ck(k); return t + (c ? c.price * S.cart[k] : 0); }, 0);
+const wc = () => Object.keys(S.wl).filter(id => PI[id]).length;
+const VIEW = {};
+
+/* ======================= small UI pieces ======================= */
+function pic(p) { const a = imgs(p); return a.length ? `<img src="${esc(small(a[0]))}" alt="${esc(p.name)}" loading="lazy" decoding="async">` : `<span class="emo">${I(emn(CN[p.cat]))}</span>`; }
+function wlBtn(id) { return `<button class="wlb" title="${S.wl[id] ? "Remove from wishlist" : "Add to wishlist"}" onclick="event.preventDefault();togW(${id})">${I(S.wl[id] ? "heartFill" : "heart")}</button>`; }
+function priceHtml(p) { return hasP(p) ? `<div class="price">${inr(p.price)}${off(p) ? `<s>${inr(p.mrp)}</s><em>${off(p)}% off</em>` : ""}</div>` : ""; }
+function card(p) {
+  const o = oos(p), pv = p.variations && p.variations.length;
+  const meta = o ? '<span class="oost">Out of stock</span>' : p.stockLeft ? `<span class="low">Only ${p.stockLeft} left</span>` : pv ? plural(pv, "option") : (p.brand !== "Other brands" ? esc(p.brand) : "");
+  const btn = !buyable(p) && !pv ? `<a class="btn s o" href="#/p/${p.id}">Read more</a>`
+    : o ? '<button class="btn s" disabled>Out of stock</button>'
+    : pv ? `<a class="btn s" href="#/p/${p.id}">Choose option</a>`
+    : `<button class="btn s" onclick="add('${p.id}',1)">${I("cart","wh")} Add to cart</button>`;
+  return `<div class="card${o ? " oos" : ""}"><a class="cimg" href="#/p/${p.id}">${pic(p)}${o ? '<span class="oosp">Out of stock</span>' : ""}</a>${wlBtn(p.id)}<a class="cname" href="#/p/${p.id}">${esc(p.name)}</a><div class="cmeta">${meta}</div>${priceHtml(p)}<div class="cact">${btn}</div></div>`;
+}
+// One-row product slider: swipe on phones, arrow buttons on desktop
+const catTile = c => `<a class="cat" href="#/c/${c.id}"><span class="ib">${I(emn(c.name))}</span><b>${esc(c.name)}</b><span>${plural(inCat(c.id).length, "product")}</span></a>`;
+const slider = (l, kind) => `<div class="slider${kind ? " " + kind : ""}"><button class="sa l off" aria-label="Previous" onclick="slide(this,-1)">‹</button><div class="srow" onscroll="arrows(this)">${l.map(kind === "c" ? catTile : card).join("")}</div><button class="sa r" aria-label="Next" onclick="slide(this,1)">›</button></div>`;
+function slide(btn, d) { const r = btn.parentNode.querySelector(".srow"); r.scrollBy({left: d * r.clientWidth * 0.9, behavior: "smooth"}); }
+function arrows(r) { const s = r.parentNode; s.querySelector(".sa.l").classList.toggle("off", r.scrollLeft < 4); s.querySelector(".sa.r").classList.toggle("off", r.scrollLeft + r.clientWidth >= r.scrollWidth - 4); }
+const empty = (ico, t, cta) => `<div class="empty">${I(ico)}<p>${t}</p>${cta || ""}</div>`;
+const crumb = parts => `<div class="crumb"><a href="#/">Home</a>${parts.map(([t, h]) => `<i>›</i>${h ? `<a href="${h}">${esc(t)}</a>` : `<span>${esc(t)}</span>`}`).join("")}</div>`;
+function toast(msg, link) { const t = document.getElementById("toast"); t.innerHTML = msg + (link || ""); t.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove("on"), 2600); }
+
+/* ======================= pages ======================= */
+const V = {};
+V.home = () => {
+  const ok = P.filter(p => buyable(p) && !oos(p));
+  const deals = ok.filter(p => p.deal).concat(ok.filter(p => !p.deal && off(p) > 0).sort((a, b) => off(b) - off(a))).slice(0, 10);
+  const seen = new Set(deals.map(p => p.id)), trend = ok.filter((p, i) => !seen.has(p.id) && i % 3 === 1).slice(0, 10);
+  const ranked = CATS.filter(c => c.homeRank).sort((x, y) => x.homeRank - y.homeRank);
+  let byRank = ranked.concat(CATS.filter(c => !c.homeRank).sort((x, y) => inCat(y.id).length - inCat(x.id).length));
+  byRank = byRank.filter(c => !isOthers(c)).concat(byRank.filter(isOthers));
+  const top4 = byRank.slice(0, 4), top8 = byRank.slice(0, 8);
+  return `<section class="hero">
+    <div class="hb"><h1>Mobile accessories at Karol Bagh prices</h1><p>Chargers, earbuds, batteries, speakers and more, straight from Karol Bagh. Pay cash on delivery.</p>
+      <div class="ctas"><a class="btn" href="#/categories">Shop all categories</a><a class="btn o" href="${APP_URL}">Get the app</a></div>${I("airpods", "wh art")}</div>
+    <div class="c4">${top4.map(c => `<a class="cbx" href="#/c/${c.id}"><span class="ib">${I(emn(c.name))}</span><div><b>${esc(c.name)}</b><span>${plural(inCat(c.id).length, "product")}</span></div></a>`).join("")}</div>
+  </section>
+  <div class="trust"><div>${I("success")}<span><b>Cash on Delivery</b><small>Pay when your order arrives</small></span></div><div>${I("truck")}<span><b>Free delivery</b><small>On every order</small></span></div><div>${I("phone")}<span><b>Call us</b><small>${PHONE}</small></span></div><div>${I("cart")}<span><b>Minimum order ${inr(MIN)}</b><small>Karol Bagh wholesale rates</small></span></div></div>
+  <section class="sec"><div class="sh"><h2>Shop by category</h2><a href="#/categories">See all</a></div>${slider(top8, "c")}</section>
+  ${deals.length ? `<section class="sec"><div class="sh"><h2>Deals of the day</h2><a href="#/search/">View all</a></div>${slider(deals)}</section>` : ""}
+  ${trend.length ? `<section class="sec"><div class="sh"><h2>Trending in Karol Bagh</h2></div>${slider(trend)}</section>` : ""}
+  <div class="appband"><span class="ib">${I("cart", "wh")}</span><div><h3>Shop faster on the eKarolBagh app</h3><p>Same products, same prices, same account. Your cart and orders stay in sync.</p></div><a class="btn" href="${APP_URL}">Open the app</a></div>`;
+};
+V.categories = () => crumb([["All categories"]]) + `<h1 class="pt">All categories</h1><div class="cats">${CATS.map(c => `<a class="cat" href="#/c/${c.id}"><span class="ib">${I(emn(c.name))}</span><b>${esc(c.name)}</b><span>${plural(inCat(c.id).length, "product")}</span></a>`).join("")}</div>`;
+V.cat = (id) => { // step 1: guarantee choice (skipped when a category has no guarantee split)
+  id = +id; if (!CN[id]) return V.notfound();
+  if (!inCat(id, "g").length && !inCat(id, "n").length) { location.replace(`#/c/${id}/u/all`); return ""; }
+  const opt = (g, ico, sub) => { const ps = inCat(id, g), bs = brands(id, g), dis = !ps.length, mp = minP(ps);
+    return `<a class="gcard${g !== "g" ? " alt" : ""}${dis ? " dis" : ""}" href="#/c/${id}/${g}"><span class="gi">${I(ico)}</span><div><b>${GL[g]}</b><span>${dis ? "Not available in this category" : plural(ps.length, "product") + " · " + plural(bs.length, "brand") + (mp ? " · from " + inr(mp) : "")}</span><small>${sub}</small></div>${dis ? "" : '<span class="chev">›</span>'}</a>`; };
+  return crumb([[CN[id]]]) + `<h1 class="pt">${esc(CN[id])}</h1><p class="mute" style="margin:-8px 0 18px">Choose a warranty type</p><div class="choice">${opt("g", "guarantee", "Brand-backed, replacement cover")}${opt("n", "tag", "Lowest price, no replacement cover")}${inCat(id, "u").length ? opt("u", "orders", "Warranty not specified") : ""}</div>`;
+};
+V.brands = (id, g) => { // step 2: brands
+  id = +id; if (!CN[id]) return V.notfound();
+  const bs = brands(id, g), tot = inCat(id, g).length;
+  return crumb([[CN[id], `#/c/${id}`], [GL[g]]]) + `<h1 class="pt">${esc(CN[id])} · ${GL[g]}</h1>
+  <div class="chips">${["g", "n"].map(x => { const k = inCat(id, x).length; return k ? `<a class="chip${x === g ? " on" : ""}" href="#/c/${id}/${x}">${GL[x]} (${k})</a>` : ""; }).join("")}</div>
+  <div class="bgrid"><a class="brand" href="#/c/${id}/${g}/all"><span class="bl all">ALL</span><b>All brands</b><span>${plural(tot, "product")}</span></a>${bs.map(b => `<a class="brand" href="#/c/${id}/${g}/${encodeURIComponent(b.name)}">${LOGOS[b.name] ? `<span class="bl lg"><img src="${esc(LOGOS[b.name])}" alt="${esc(b.name)}" loading="lazy"></span>` : `<span class="bl">${esc(ini(b.name))}</span>`}<b>${esc(b.name)}</b><span>${plural(b.n, "product")}${b.min < Infinity ? " · from " + inr(b.min) : ""}</span></a>`).join("")}</div>`;
+};
+function sortList(l) {
+  const s = S.f.sort; l = l.slice();
+  if (s === "lo") l.sort((a, b) => (hasP(a) ? a.price : 1e9) - (hasP(b) ? b.price : 1e9));
+  if (s === "hi") l.sort((a, b) => (hasP(b) ? b.price : -1) - (hasP(a) ? a.price : -1));
+  if (s === "off") l.sort((a, b) => off(b) - off(a));
+  if (S.f.stock) l = l.filter(p => !oos(p));
+  return stockSort(l);
+}
+const sortSel = () => `<select onchange="S.f.sort=this.value;render()"><option value="rel">Sort: Relevance</option><option value="lo"${S.f.sort === "lo" ? " selected" : ""}>Price: low to high</option><option value="hi"${S.f.sort === "hi" ? " selected" : ""}>Price: high to low</option><option value="off"${S.f.sort === "off" ? " selected" : ""}>Biggest discount</option></select>`;
+const stockOpt = () => `<div class="opt${S.f.stock ? " on" : ""}" onclick="S.f.stock=!S.f.stock;render()"><span class="cb">${S.f.stock ? "✓" : ""}</span>Hide out of stock</div>`;
+V.list = (id, g, b) => { // step 3: products, with the other choices as filters
+  id = +id; if (!CN[id]) return V.notfound();
+  const brand = b === "all" ? null : decodeURIComponent(b), bs = brands(id, g), split = inCat(id, "g").length || inCat(id, "n").length;
+  const l = sortList(inCat(id, g, brand));
+  const side = `<aside class="side">${split ? `<div class="grp"><h4>Warranty</h4>${["g", "n"].map(x => { const k = inCat(id, x).length; return `<a class="opt${x === g ? " on" : ""}${k ? "" : " dis"}" href="#/c/${id}/${x}/all"><span class="rd"></span>${GL[x]}<small>${k}</small></a>`; }).join("")}</div>` : ""}
+    <div class="grp"><h4>${split ? "Brand" : "Brand / type"}</h4><a class="opt${!brand ? " on" : ""}" href="#/c/${id}/${g}/all"><span class="rd"></span>All<small>${inCat(id, g).length}</small></a>${bs.map(x => `<a class="opt${brand === x.name ? " on" : ""}" href="#/c/${id}/${g}/${encodeURIComponent(x.name)}"><span class="rd"></span>${esc(x.name)}<small>${x.n}</small></a>`).join("")}</div>
+    <div class="grp"><h4>Availability</h4>${stockOpt()}</div></aside>`;
+  const trail = split ? [[CN[id], `#/c/${id}`], [GL[g], `#/c/${id}/${g}`]] : [[CN[id], `#/c/${id}/u/all`]];
+  return crumb(brand ? trail.concat([[brand]]) : trail) + `<h1 class="pt">${esc(brand || CN[id])}${brand ? ` <span class="mute" style="font-size:15px;font-weight:500">in ${esc(CN[id])}</span>` : ""}</h1>
+  <div class="lay">${side}<div><div class="tbar"><span class="mute">${plural(l.length, "product")}</span>${sortSel()}</div>${l.length ? `<div class="grid g4">${l.map(card).join("")}</div>` : empty("search", "No products here right now")}</div></div>`;
+};
+V.product = (id) => {
+  const p = PI[id]; if (!p) return V.notfound();
+  if (S.pid !== p.id) { S.pid = p.id; S.gi = 0; S.tab = "d"; const vs = p.variations || [], f = vs.find(x => x.inStock !== false) || vs[0]; S.v = f ? f.id : null; S.q = 1; }
+  const vs = p.variations || [], v = vs.length ? vs.find(x => x.id === S.v) || vs[0] : null;
+  const u = v && v.price != null ? v.price : p.price, mr = v && v.mrp ? v.mrp : p.mrp, o = oos(p, v);
+  const info = !(Number(u) > 0) || (!v && p.purchasable === false), of = !info && mr > u ? Math.round((1 - u / mr) * 100) : 0;
+  const key = p.id + (v ? "-" + v.id : ""), left = (v && v.stockLeft) || p.stockLeft, a = imgs(p), gi = Math.min(S.gi, Math.max(0, a.length - 1));
+  const det = [["Category", catPath(p)], ["SKU", p.sku], ["Weight", p.weight], ["Dimensions", p.dimensionsText]].concat((p.attributes || []).filter(x => !x.variation).map(x => [x.name, x.values.join(", ")])).concat([["Tags", (p.tags || []).join(", ")]]).filter(r => r[1]);
+  const desc = p.descriptionHtml ? rich(p.descriptionHtml).replace(/^\s*<h[1-6]>\s*(product\s+)?description\s*:?\s*<\/h[1-6]>/i, "") : (p.desc ? `<p>${esc(p.desc)}</p>` : "");
+  const revs = p.reviews || [];
+  let sim = stockSort(inCat(p.cat, p.g, p.brand).filter(x => x.id !== p.id)); if (sim.length < 5) sim = sim.concat(inCat(p.cat, p.g).filter(x => x.id !== p.id && x.brand !== p.brand)); sim = sim.slice(0, 12);
+  const tabs = [["d", "Description", desc], ["s", "Details", det.length ? 1 : 0], ["r", `Reviews (${revs.length})`, 1]].filter(t => t[2]);
+  const tab = tabs.find(t => t[0] === S.tab) ? S.tab : (tabs[0] || [])[0];
+  const split = inCat(p.cat, "g").length || inCat(p.cat, "n").length;
+  return crumb([[CN[p.cat], split ? `#/c/${p.cat}` : `#/c/${p.cat}/u/all`], ...(p.brand !== "Other brands" ? [[p.brand, `#/c/${p.cat}/${p.g}/${encodeURIComponent(p.brand)}`]] : []), [p.name]]) +
+  `<div class="pp">
+    <div class="gal${o ? " oos" : ""}"><div class="gmain">${a.length ? `<img src="${esc(large(a[gi]))}" alt="${esc(p.name)}">` : `<span class="emo">${I(emn(CN[p.cat]))}</span>`}${o ? '<span class="oosp">Out of stock</span>' : ""}</div>${wlBtn(p.id)}
+      ${a.length > 1 ? `<div class="gth">${a.map((im, i) => `<img src="${esc(small(im))}" class="${i === gi ? "on" : ""}" onclick="S.gi=${i};render()" alt="">`).join("")}</div>` : ""}</div>
+    <div class="info"><h1>${esc(p.name)}</h1><div class="cp">${esc(catPath(p))}${p.rating > 0 ? " · ⭐ " + p.rating : ""}${p.sku ? " · SKU " + esc(p.sku) : ""}</div>
+      ${info ? "" : `<div class="price">${inr(u)}${of ? `<s>${inr(mr)}</s><em>${of}% off</em>` : ""}</div>`}
+      ${o ? '<div class="oosbig">Out of stock</div>' : left ? `<div class="low" style="margin-top:6px">Only ${left} left</div>` : ""}
+      ${vs.length ? `<div class="vlab">Options</div><div class="chips">${vs.map(x => `<span class="chip${x === v ? " on" : ""}${x.inStock === false ? " vx" : ""}" onclick="S.v=${x.id};render()">${esc(vlabel(x) || "Option " + x.id)}</span>`).join("")}</div>` : ""}
+      ${p.shortDescriptionHtml ? `<div class="rich">${rich(p.shortDescriptionHtml)}</div>` : ""}
+      ${info ? "" : o ? '<div class="buy"><button class="btn" disabled>Out of stock</button></div>' :
+        `<div class="buy"><span class="step"><span onclick="S.q=Math.max(1,S.q-1);render()">−</span><em>${S.q}</em><span onclick="S.q++;render()">+</span></span><button class="btn o" onclick="add('${key}',S.q)">${I("cart")} Add to cart</button><button class="btn" onclick="add('${key}',S.q,1)">Buy now · ${inr(u * S.q)}</button></div>`}
+      <div class="perks"><div>${I("success")}Cash on Delivery</div><div>${I("truck")}Free delivery</div><div>${I("help")}<a class="lnk" href="#/help">Help &amp; support</a></div><div>${I("phone")}<span>Questions? <a class="lnk" href="tel:${PHONE_TEL}">${PHONE}</a></span></div></div>
+    </div>
+  </div>
+  ${tabs.length ? `<section class="sec panel"><div class="tabs">${tabs.map(t => `<a class="${t[0] === tab ? "on" : ""}" onclick="S.tab='${t[0]}';render()">${t[1]}</a>`).join("")}</div>
+    ${tab === "d" ? `<div class="rich">${desc}</div>` : tab === "s" ? `<table class="kv">${det.map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join("")}</table>` :
+      revs.length ? revs.map(r => `<div class="rv"><span class="rvs">${"★★★★★".slice(0, r.rating)}<i>${"★★★★★".slice(r.rating)}</i></span><b>${esc(r.reviewer)}</b>${r.verified ? '<small>Verified buyer</small>' : ""}<small>${esc((r.date || "").slice(0, 10))}</small><p>${esc(r.text)}</p></div>`).join("") : '<p class="mute">There are no reviews yet.</p>'}</section>` : ""}
+  ${sim.length ? `<section class="sec"><div class="sh"><h2>More like this</h2></div>${slider(sim)}</section>` : ""}`;
+};
+V.search = (q) => {
+  q = decodeURIComponent(q || ""); document.getElementById("hq").value = q;
+  const t = q.trim().toLowerCase().split(/\s+/).filter(Boolean), sc = S.scat || 0;
+  let r = P.filter(p => { if (sc && p.cat !== sc) return false; if (!t.length) return true; const h = p._h || (p._h = [p.name, p.brand, CN[p.cat], p.categoryPath || "", (p.tags || []).join(" "), p.sku || ""].join(" ").toLowerCase()); return t.every(w => h.includes(w)); });
+  if (t.length && S.f.sort === "rel") r = r.map((p, i) => [t.every(w => p.name.toLowerCase().includes(w)) ? 0 : 1, i, p]).sort((a, b) => a[0] - b[0] || a[1] - b[1]).map(x => x[2]);
+  r = sortList(r);
+  return crumb([[q ? `Search: ${q}` : "All products"]]) + `<h1 class="pt">${q ? `Results for “${esc(q)}”` : "All products"}</h1>
+  <div class="chips"><span class="chip${!sc ? " on" : ""}" onclick="S.scat=0;render()">All categories</span>${CATS.map(c => `<span class="chip${sc === c.id ? " on" : ""}" onclick="S.scat=${c.id};render()">${esc(c.name)}</span>`).join("")}</div>
+  <div class="tbar"><span class="mute">${plural(r.length, "result")}</span><div style="display:flex;gap:14px;align-items:center">${stockOpt()}${sortSel()}</div></div>
+  ${r.length ? `<div class="grid">${r.slice(0, S.lim || 60).map(card).join("")}</div>${r.length > (S.lim || 60) ? `<div style="text-align:center;margin-top:20px"><button class="btn o" onclick="S.lim=(S.lim||60)+60;render()">Show more (${r.length - (S.lim || 60)} left)</button></div>` : ""}` : empty("search", `No products match “${esc(q)}”`)}`;
+};
+V.wishlist = () => { const l = Object.keys(S.wl).map(id => PI[id]).filter(Boolean); return crumb([["Wishlist"]]) + `<h1 class="pt">My wishlist (${l.length})</h1>` + (l.length ? `<div class="grid">${l.map(card).join("")}</div>` : empty("heart", "Tap the heart on any product to save it here", '<a class="btn" href="#/">Browse products</a>')); };
+V.cart = () => {
+  const k = Object.keys(S.cart).filter(x => ck(x)), s = sub(), need = MIN - s;
+  if (!k.length) return crumb([["Cart"]]) + `<h1 class="pt">My cart</h1>` + empty("cart", "Your cart is empty", '<a class="btn" href="#/">Start shopping</a>');
+  return crumb([["Cart"]]) + `<h1 class="pt">My cart (${k.length})</h1><div class="two"><div class="panel">${k.map(x => { const c = ck(x), p = c.p, q = S.cart[x];
+    return `<div class="citem"><a class="t" href="#/p/${p.id}">${pic(p)}</a><div><a href="#/p/${p.id}"><h4>${esc(p.name)}</h4></a>${c.label ? `<div class="mute" style="font-size:12.5px">${esc(c.label)}</div>` : ""}<div class="row"><span class="step sm"><span onclick="cq('${x}',-1)">−</span><em>${q}</em><span onclick="cq('${x}',1)">+</span></span><span class="mute">× ${inr(c.price)}</span><span class="rm" onclick="EKB.setQty('${x}',0)">Remove</span></div></div><div class="lt">${inr(c.price * q)}</div></div>`; }).join("")}</div>
+    <div class="panel sum"><h3>Price details</h3><div class="kvr"><span>Items (${k.length})</span><span>${inr(s)}</span></div><div class="kvr"><span>Delivery</span><span class="free">FREE</span></div><div class="kvr t"><span>Total</span><span>${inr(s)}</span></div>
+      ${need > 0 ? `<div class="minbar"><b>Add ${inr(need)} more</b> to place your order<small>Minimum order value is ${inr(MIN)}</small><i><s style="width:${Math.min(100, s / MIN * 100)}%"></s></i></div><button class="btn w" disabled>Minimum order ${inr(MIN)}</button>` :
+        `<div style="height:14px"></div><a class="btn w" href="#/checkout">${S.user ? "Proceed to checkout" : "Sign in to checkout"}</a>`}
+      <p class="mute" style="font-size:12px;margin-top:12px;display:flex;gap:8px;align-items:center">${I("success")} Cash on Delivery only</p></div></div>`;
+};
+V.checkout = async () => {
+  if (!cc() || sub() < MIN) { location.replace("#/cart"); return ""; }
+  if (!S.user) { location.replace("#/login/checkout"); return ""; }
+  let list = []; try { list = await EKB.addresses(); } catch (e) {}
+  VIEW.addrs = list;
+  const a = list.find(x => x.isDefault) || list[0] || {name: S.user.name, phone: (S.user.phone || "").replace(/\D/g, "").slice(-10)}, s = sub();
+  const f = (id, label, v, cls, ph) => `<label class="fl${cls ? " " + cls : ""}">${label}<span class="fw">${id === "a1" ? `<textarea id="${id}" rows="2" placeholder="${ph || ""}">${esc(v || "")}</textarea>` : `<input id="${id}" value="${esc(v || "")}" placeholder="${ph || ""}">`}</span></label>`;
+  return crumb([["Cart", "#/cart"], ["Checkout"]]) + `<h1 class="pt">Checkout</h1><div class="two"><div>
+    <div class="panel"><h3 style="font-size:16px;margin-bottom:14px">Delivery address</h3>
+    ${list.length > 1 ? `<div class="chips">${list.map((x, i) => `<span class="chip${x === a ? " on" : ""}" onclick="fillAddr(${i},this)">${esc(x.name)} · ${esc(x.city)} ${esc(x.pin)}</span>`).join("")}</div>` : ""}
+    <div class="form">${f("an", "Full name", a.name)}${f("ap", "Mobile number", (a.phone || "").replace(/\D/g, "").slice(-10), "", "10-digit mobile")}${f("a1", "Address (house no., street, area)", a.line, "full")}${f("al", "Landmark (optional)", a.landmark)}${f("apc", "Pincode", a.pin, "", "6 digits")}${f("ac", "City", a.city)}${f("as", "State", a.state)}</div><div class="ferr" id="ferr"></div></div>
+    <div class="panel" style="margin-top:16px"><h3 style="font-size:16px;margin-bottom:12px">Payment</h3><div class="pay"><span class="rd"></span><div><b>Cash on Delivery</b><small>Pay in cash when your order arrives</small></div></div></div></div>
+    <div class="panel sum"><h3>Order summary</h3>${Object.keys(S.cart).filter(x => ck(x)).map(x => { const c = ck(x); return `<div class="kvr"><span style="max-width:220px">${esc(c.p.name)}${c.label ? " (" + esc(c.label) + ")" : ""} × ${S.cart[x]}</span><span>${inr(c.price * S.cart[x])}</span></div>`; }).join("")}
+      <div class="kvr"><span>Delivery</span><span class="free">FREE</span></div><div class="kvr t"><span>To pay</span><span>${inr(s)}</span></div><div style="height:14px"></div><button class="btn w" id="pob" onclick="placeOrder()">Place order (COD) · ${inr(s)}</button><div class="ferr" id="ferr2"></div></div></div>`;
+};
+function fillAddr(i, el) { const a = VIEW.addrs[i]; [["an", a.name], ["ap", a.phone], ["a1", a.line], ["al", a.landmark], ["apc", a.pin], ["ac", a.city], ["as", a.state]].forEach(([id, v]) => { document.getElementById(id).value = v || ""; }); document.querySelectorAll(".chips .chip").forEach(c => c.classList.toggle("on", c === el)); }
+V.done = async (num) => {
+  const o = await EKB.order(num).catch(() => null); if (!o) return V.notfound(); const a = o.address;
+  return `<div class="done panel">${I("success")}<h1>Order placed!</h1><p class="mute">Order ${esc(o.number)} · ${plural(o.items.length, "item")} · ${inr(o.total)} · Cash on Delivery</p><p style="margin:14px 0 22px">We'll deliver to ${esc(a.line)}, ${esc(a.city)} ${esc(a.pin)}. A confirmation email is on its way, and you can follow the order in My orders.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn o" href="#/">Continue shopping</a><a class="btn" href="#/account/orders">View my orders</a></div></div>`;
+};
+const pwField = (id, label, ph) => `<label class="fl">${label}<span class="fw"><input id="${id}" type="password" placeholder="${ph}"><em onclick="const i=this.previousElementSibling;i.type=i.type==='password'?'text':'password'">${I("eye")}</em></span></label>`;
+V.login = (next, mode) => {
+  if (S.user) { location.replace("#/" + (next === "checkout" ? "checkout" : "account")); return ""; }
+  const up = mode === "signup", nx = next || "account", f = (id, label, type, ph) => `<label class="fl">${label}<span class="fw"><input id="${id}" type="${type}" placeholder="${ph}"></span></label>`;
+  return `<div class="auth panel"><div class="tg"><a class="${up ? "" : "on"}" href="#/login/${nx}">Sign in</a><a class="${up ? "on" : ""}" href="#/signup/${nx}">Create account</a></div>
+    <h1 class="pt" style="font-size:22px;margin-bottom:6px">${up ? "Create your account" : "Welcome back"}</h1><p class="mute" style="margin-bottom:18px">${nx === "checkout" ? "Sign in to place your order" : "Browse as a guest · sign in to order"}</p>
+    <form class="form" onsubmit="event.preventDefault();signIn(${up ? 1 : 0},'${nx}')">${up ? f("fn", "Full name", "text", "Your name") + f("fp", "Mobile number", "tel", "10-digit mobile") : ""}${f("fe", "Email", "email", "you@example.com")}${pwField("fpw", "Password", up ? "At least 8 characters" : "Your password")}${up ? "" : '<a class="lnk fgt" onclick="forgot()">Forgot password?</a>'}<button style="display:none"></button></form>
+    <div class="ferr" id="ferr"></div><button class="btn w" id="sib" onclick="signIn(${up ? 1 : 0},'${nx}')">${up ? "Create account" : "Sign in"}</button>
+    <p class="mute" style="text-align:center;font-size:12px;margin-top:14px">Same account works on the website and the app.</p></div>`;
+};
+V.reset = (token) => `<div class="auth panel"><h1 class="pt" style="font-size:22px;margin-bottom:6px">Set a new password</h1><p class="mute" style="margin-bottom:18px">Choose a password with at least 8 characters.</p>
+  <div class="form">${pwField("np1", "New password", "At least 8 characters")}${pwField("np2", "Repeat new password", "Same password again")}</div><div class="ferr" id="ferr"></div><button class="btn w" onclick="doReset('${esc(token)}')">Save password</button></div>`;
+const ANAV = [["orders", "orders", "My orders"], ["wishlist", "heart", "Wishlist"], ["addresses", "pin", "Saved addresses"], ["settings", "settings", "Settings"], ["policies", "guarantee", "Policies"], ["help", "help", "Help & support"]];
+function accLayout(cur, body) {
+  return crumb([["My account"]]) + `<div class="acl"><nav class="anav"><div class="who"><b>${esc(S.user.name)}</b><small>${esc(S.user.email)}</small></div>${ANAV.map(a => `<a class="${a[0] === cur ? "on" : ""}" href="#/${["policies", "help", "wishlist"].includes(a[0]) ? a[0] : "account/" + a[0]}">${I(a[1])}${a[2]}</a>`).join("")}<a onclick="logout()" style="cursor:pointer">${I("logout")}Log out</a></nav><div>${body}</div></div>`;
+}
+const STEPS = ["New", "Confirmed", "Packed", "Shipped", "Delivered"];
+V.account = async (sec) => {
+  if (!S.user) { location.replace("#/login/account"); return ""; }
+  sec = sec || "orders";
+  if (sec === "orders") {
+    const os = await EKB.orders();
+    return accLayout("orders", `<h1 class="pt">My orders</h1>` + (os.length ? os.map(o => `<div class="ord"><div class="h"><div><b>${esc(o.number)}</b> <span class="mute">· ${new Date(o.createdAt).toLocaleDateString("en-IN", {day:"numeric", month:"short", year:"numeric"})}</span></div><span class="st ${o.status}">${o.status}</span></div>
+      <div class="th">${o.items.map(it => `<a href="#/p/${it.productId}" title="${esc(it.name)}">${it.image ? `<img src="${esc(it.image)}" alt="">` : `<span>${I("orders")}</span>`}</a>`).join("")}</div>
+      ${o.status !== "Cancelled" ? `<div class="mute" style="font-size:12px;margin-top:10px">${STEPS.map(s => STEPS.indexOf(s) <= STEPS.indexOf(o.status) ? `<b style="color:var(--blue)">${s}</b>` : s).join(" → ")}</div>` : ""}
+      <div class="kvr" style="margin-top:10px"><span class="mute">${plural(o.items.length, "item")} · Cash on Delivery · to ${esc(o.address.city)}</span><b>${inr(o.total)}</b></div>${o.canCancel ? `<button class="btn o s" style="margin-top:8px" onclick="cancelOrder('${o.number}')">Cancel order</button>` : ""}</div>`).join("") : `<div class="panel">${empty("orders", "You haven't placed any orders yet", '<a class="btn" href="#/">Start shopping</a>')}</div>`));
+  }
+  if (sec === "addresses") {
+    const list = await EKB.addresses();
+    return accLayout("addresses", `<h1 class="pt">Saved addresses</h1>${list.length ? list.map(a => `<div class="ord"><div class="h"><b>${esc(a.name)}</b>${a.isDefault ? '<span class="st">Default</span>' : ""}</div><p style="margin:6px 0;line-height:1.6">${esc(a.line)}${a.landmark ? ", " + esc(a.landmark) : ""}<br>${esc(a.city)}, ${esc(a.state)} – ${esc(a.pin)}</p><p class="mute">${I("phone")} ${esc(a.phone)}</p><div style="display:flex;gap:8px;margin-top:10px">${a.isDefault ? "" : `<button class="btn o s" onclick="defAddr(${a.id})">Make default</button>`}<button class="btn o s" style="color:var(--red);border-color:#f6c5ca" onclick="delAddr(${a.id})">Delete</button></div></div>`).join("") : '<div class="panel"><p class="mute">No saved addresses yet. Your address is saved when you place your first order.</p></div>'}`);
+  }
+  if (sec === "settings") return accLayout("settings", `<h1 class="pt">Settings</h1><div class="panel"><h3 style="font-size:15px;margin-bottom:12px">Profile</h3><div class="form"><label class="fl">Full name<span class="fw"><input id="sn" value="${esc(S.user.name)}"></span></label><label class="fl">Mobile number<span class="fw"><input id="sp" value="${esc((S.user.phone || "").replace(/\D/g, "").slice(-10))}"></span></label><label class="fl full">Email<span class="fw"><input value="${esc(S.user.email)}" disabled></span></label></div><div class="ferr" id="ferr"></div><button class="btn" onclick="saveProfile()">Save changes</button></div>
+    <div class="panel" style="margin-top:16px"><h3 style="font-size:15px;margin-bottom:12px">Change password</h3><div class="form">${pwField("cp0", "Current password", "")}${pwField("cp1", "New password", "At least 8 characters")}</div><div class="ferr" id="ferr3"></div><button class="btn o" onclick="changePw()">Change password</button></div>
+    <div class="panel" style="margin-top:16px"><h3 style="font-size:15px">Delete account</h3><p class="mute" style="margin:6px 0 12px">Permanently delete your account, saved addresses, cart and wishlist.</p><button class="btn o" style="color:var(--red);border-color:var(--red)" onclick="delAccount()">Delete my account</button></div>`);
+  return V.notfound();
+};
+V.policies = (i) => {
+  if (!POL.length) return crumb([["Policies"]]) + `<div class="panel">${empty("guarantee", "Policies will appear here after the scraper runs")}</div>`;
+  i = Math.min(+i || 0, POL.length - 1); const pg = POL[i];
+  return crumb([["Policies", "#/policies"], [pg.title]]) + `<div class="acl"><nav class="anav">${POL.map((x, j) => `<a class="${j === i ? "on" : ""}" href="#/policies/${j}">${I("guarantee")}${esc(x.title)}</a>`).join("")}</nav><div class="panel"><h1 class="pt">${esc(pg.title)}</h1><div class="rich">${rich(pg.html)}</div></div></div>`;
+};
+V.help = () => crumb([["Help & support"]]) + `<h1 class="pt">Help &amp; support</h1><div class="choice" style="max-width:none;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))"><a class="gcard" href="tel:${PHONE_TEL}"><span class="gi">${I("phone")}</span><div><b>Call us</b><span>${PHONE}</span><small>Tap to call</small></div><span class="chev">›</span></a><a class="gcard alt" href="mailto:${EMAIL}"><span class="gi">${I("mail")}</span><div><b>Email us</b><span>${EMAIL}</span><small>We reply on working days</small></div><span class="chev">›</span></a></div>
+  ${POL.length ? `<section class="sec"><div class="sh"><h2>Policies</h2></div><div class="panel" style="padding:8px 22px">${POL.map((pg, i) => `<a class="opt" style="padding:12px 0;border-bottom:1px solid var(--line)" href="#/policies/${i}">${I("guarantee")}<span>${esc(pg.title)}</span><small>›</small></a>`).join("")}</div></section>` : ""}`;
+V.notfound = () => `<div class="panel" style="margin-top:30px">${empty("search", "This page doesn't exist", '<a class="btn" href="#/">Go to the home page</a>')}</div>`;
+
+/* ======================= actions ======================= */
+function add(k, q, buyNow) { EKB.addToCart(k, q); if (buyNow) { location.hash = "#/cart"; return; } toast(`${I("success", "wh")} Added to cart`, ' · <a href="#/cart">View cart</a>'); }
+function cq(k, d) { EKB.setQty(k, Math.max(1, (S.cart[k] || 1) + d)); }
+function togW(id) { EKB.toggleWish(id); }
+async function logout() { await EKB.logout(); location.hash = "#/"; toast(`${I("success", "wh")} Signed out`); }
+const val = id => { const e = document.getElementById(id); return e ? e.value.trim() : ""; };
+function err(m, id = "ferr", ok) { const e = document.getElementById(id); if (!e) return; e.style.color = ok ? "var(--blue)" : ""; e.textContent = m; }
+function busy(id, on) { const b = document.getElementById(id); if (b) b.disabled = on; }
+async function forgot() {
+  const e = val("fe"); if (!/\S+@\S+\.\S+/.test(e)) return err("Enter your email above, then tap Forgot password");
+  try { await EKB.forgot(e); err(`If an account exists for ${e}, we've emailed a link to reset the password.`, "ferr", 1); } catch (x) { err(x.message); }
+}
+async function signIn(up, next) {
+  const em = val("fe"), pw = (document.getElementById("fpw") || {}).value || "", nm = val("fn"), ph = val("fp").replace(/\D/g, "").slice(-10);
+  if (up && !nm) return err("Please enter your name");
+  if (up && !/^[6-9]\d{9}$/.test(ph)) return err("Please enter a valid 10-digit mobile number");
+  if (!/\S+@\S+\.\S+/.test(em)) return err("Please enter a valid email");
+  if (pw.length < (up ? 8 : 1)) return err(up ? "Password must be at least 8 characters" : "Please enter your password");
+  busy("sib", true);
+  try { if (up) await EKB.signup({name: nm, phone: ph, email: em, password: pw}); else await EKB.login(em, pw); prune(); location.hash = "#/" + (next === "checkout" ? "checkout" : "account"); }
+  catch (x) { err(x.message); busy("sib", false); }
+}
+async function doReset(token) {
+  const a = document.getElementById("np1").value, b = document.getElementById("np2").value;
+  if (a.length < 8) return err("Password must be at least 8 characters"); if (a !== b) return err("The two passwords don't match");
+  try { await EKB.reset(token, a); toast(`${I("success", "wh")} Password changed. You're signed in.`); location.hash = "#/account"; } catch (x) { err(x.message); }
+}
+async function saveProfile() { try { await EKB.updateMe({name: val("sn"), phone: val("sp")}); toast(`${I("success", "wh")} Saved`); } catch (x) { err(x.message); } }
+async function changePw() { const c = document.getElementById("cp0").value, n = document.getElementById("cp1").value; if (n.length < 8) return err("New password must be at least 8 characters", "ferr3"); try { await EKB.changePassword(c, n); err("Password changed", "ferr3", 1); document.getElementById("cp0").value = document.getElementById("cp1").value = ""; } catch (x) { err(x.message, "ferr3"); } }
+async function delAccount() { const pw = prompt("This permanently deletes your account. Enter your password to confirm:"); if (!pw) return; try { await EKB.deleteMe(pw); location.hash = "#/"; toast("Your account has been deleted"); } catch (x) { alert(x.message); } }
+async function cancelOrder(n) { if (!confirm(`Cancel order ${n}?`)) return; try { await EKB.cancelOrder(n); toast("Order cancelled"); render(); } catch (x) { alert(x.message); } }
+async function delAddr(id) { if (!confirm("Delete this address?")) return; await EKB.deleteAddress(id).catch(x => alert(x.message)); render(); }
+async function defAddr(id) { const a = (await EKB.addresses()).find(x => x.id === id); if (a) await EKB.updateAddress(id, {...a, isDefault: true}).catch(x => alert(x.message)); render(); }
+async function placeOrder() {
+  const a = {name: val("an"), phone: val("ap").replace(/\D/g, "").slice(-10), line: val("a1"), landmark: val("al"), pin: val("apc"), city: val("ac"), state: val("as")};
+  if (!a.name) return err("Please enter the receiver's name");
+  if (!/^[6-9]\d{9}$/.test(a.phone)) return err("Please enter a valid 10-digit mobile number");
+  if (a.line.length < 8) return err("Please enter the full address");
+  if (!/^\d{6}$/.test(a.pin)) return err("Please enter a valid 6-digit pincode");
+  if (!a.city || !a.state) return err("Please enter city and state");
+  busy("pob", true);
+  try { const o = await EKB.placeOrder(a, "web"); location.hash = "#/done/" + o.number; }
+  catch (x) { err(x.message, "ferr2"); busy("pob", false); }
+}
+
+/* ======================= search box ======================= */
+const hq = document.getElementById("hq"), sg = document.getElementById("sugg");
+function doSearch() { S.scat = 0; S.lim = 60; location.hash = "#/search/" + encodeURIComponent(hq.value.trim()); sg.classList.remove("on"); hq.blur(); }
+hq.addEventListener("keydown", e => { if (e.key === "Enter") { const s = sg.querySelector("a.sel"); if (s) { location.hash = s.getAttribute("href"); sg.classList.remove("on"); } else doSearch(); } if (e.key === "Escape") sg.classList.remove("on");
+  if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); const it = [...sg.querySelectorAll("a")]; if (!it.length) return; let i = it.findIndex(a => a.classList.contains("sel")); it.forEach(a => a.classList.remove("sel")); i = e.key === "ArrowDown" ? (i + 1) % it.length : (i <= 0 ? it.length - 1 : i - 1); it[i].classList.add("sel"); } });
+hq.addEventListener("input", () => {
+  const t = hq.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  if (!t.length) { sg.classList.remove("on"); return; }
+  const r = stockSort(P.filter(p => t.every(w => (p.name + " " + p.brand + " " + CN[p.cat]).toLowerCase().includes(w)))).slice(0, 6);
+  sg.innerHTML = r.map(p => `<a href="#/p/${p.id}" onclick="sg.classList.remove('on')">${imgs(p).length ? `<img class="t" src="${esc(small(imgs(p)[0]))}" alt="">` : `<span class="t">${I(emn(CN[p.cat]))}</span>`}<span style="min-width:0"><b>${esc(p.name)}</b><small>${esc(CN[p.cat])}${hasP(p) ? " · " + inr(p.price) : ""}${oos(p) ? " · Out of stock" : ""}</small></span></a>`).join("") || '<a class="mute" style="pointer-events:none">No matches</a>';
+  sg.classList.add("on");
+});
+document.addEventListener("click", e => { if (!e.target.closest(".sbox")) sg.classList.remove("on"); });
+
+/* ======================= shell: header, nav, footer, router ======================= */
+function chrome() {
+  const s = sub(), u = S.user;
+  document.getElementById("hact").innerHTML =
+    `<a class="ha" href="${u ? "#/account" : "#/login/account"}">${I("account")}<span class="t"><small>${u ? "Hello, " + esc(u.name.split(" ")[0]) : "Hello, guest"}</small><b>${u ? "My account" : "Sign in"}</b></span></a>` +
+    `<a class="ha wl" href="#/wishlist" title="Wishlist">${I("heart")}${wc() ? `<span class="badge">${wc()}</span>` : ""}<span class="t"><small>Saved</small><b>Wishlist</b></span></a>` +
+    `<a class="ha" href="#/cart">${I("cart")}${cc() ? `<span class="badge">${cc()}</span>` : ""}<span class="t"><small>${plural(cc(), "item")}</small><b>${inr(s)}</b></span></a>`;
+}
+function nav(cur) { document.getElementById("cnav").innerHTML = `<a href="#/categories" class="${cur === "all" ? "on" : ""}">${I("cats")}All categories</a>` + CATS.map(c => `<a href="#/c/${c.id}" class="${cur === c.id ? "on" : ""}">${I(emn(c.name))}${esc(c.name)}</a>`).join(""); }
+async function render() {
+  const h = location.hash.replace(/^#\/?/, ""), [r, a, b, c] = h.split("/"), m = document.getElementById("main"), tick = (render.n = (render.n || 0) + 1);
+  let html, cur = null;
+  try {
+    if (!r) html = V.home();
+    else if (r === "categories") { html = V.categories(); cur = "all"; }
+    else if (r === "c") { cur = +a; html = c ? V.list(a, b, c) : b ? V.brands(a, b) : V.cat(a); }
+    else if (r === "p") { html = V.product(a); cur = PI[a] ? PI[a].cat : null; }
+    else if (r === "search") html = V.search(a);
+    else if (r === "wishlist") html = V.wishlist();
+    else if (r === "cart") html = V.cart();
+    else if (r === "checkout") html = V.checkout();
+    else if (r === "done") html = V.done(a);
+    else if (r === "login") html = V.login(a, "signin");
+    else if (r === "signup") html = V.login(a, "signup");
+    else if (r === "reset") html = V.reset(a);
+    else if (r === "account") html = V.account(a);
+    else if (r === "policies") html = V.policies(a);
+    else if (r === "help") html = V.help();
+    else html = V.notfound();
+    if (html && html.then) { if (render.last !== location.hash) m.innerHTML = '<div class="empty">Loading…</div>'; html = await html; if (tick !== render.n) return; }
+  } catch (e) { html = `<div class="panel" style="margin-top:30px">${empty("search", esc(e.message), '<button class="btn o" onclick="render()">Try again</button>')}</div>`; }
+  if (html === "") return; // redirected
+  m.innerHTML = html; chrome(); nav(cur); m.querySelectorAll(".srow").forEach(arrows);
+  if (render.last !== location.hash) { window.scrollTo(0, 0); render.last = location.hash; }
+  if (r !== "search") hq.value = "";
+}
+document.getElementById("logo").innerHTML = `<img src="${LOGO}" alt="eKarolBagh">`;
+document.getElementById("sic").outerHTML = I("search");
+document.getElementById("s1").innerHTML = `${I("success", "wh")} Cash on Delivery`;
+document.getElementById("s2").innerHTML = `${I("truck", "wh")} Free delivery · Minimum order ${inr(MIN)}`;
+document.getElementById("s3").innerHTML = `${I("phone", "wh")} <a href="tel:${PHONE_TEL}">${PHONE}</a>`;
+document.getElementById("foot").innerHTML = `<div class="wrap">
+  <div><span class="flogo"><img src="${LOGO}" alt="eKarolBagh"></span><p style="line-height:1.6;max-width:300px">Mobile accessories straight from Karol Bagh, New Delhi. Cash on Delivery, free delivery.</p></div>
+  <div><h4>Categories</h4>${CATS.slice(0, 7).map(c => `<a href="#/c/${c.id}">${esc(c.name)}</a>`).join("")}<a href="#/categories">All categories ›</a></div>
+  <div><h4>Policies</h4>${POL.length ? POL.slice(0, 7).map((pg, i) => `<a href="#/policies/${i}">${esc(pg.title)}</a>`).join("") : '<a href="#/policies">Policies</a>'}<a href="#/help">Help &amp; support</a></div>
+  <div><h4>Contact</h4><a class="ct" href="tel:${PHONE_TEL}">${I("phone")}${PHONE}</a><a class="ct" href="mailto:${EMAIL}">${I("mail")}${EMAIL}</a><a class="ct" href="${APP_URL}">${I("cart")}Get the Android app</a></div>
+</div><div class="wrap bot">© ${new Date().getFullYear()} eKarolBagh</div>`;
+window.addEventListener("hashchange", render);
+EKB.onChange(() => { chrome(); if (!/^#\/(account|checkout|done|login|signup|reset)/.test(location.hash)) render(); });
+render();
+EKB.init().then(prune);
+</script>
+</body>
+</html>
